@@ -3,14 +3,13 @@ title: Render Functions & JSX
 type: guide
 order: 303
 ---
-
 ## Basics
 
 Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.
 
 Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
 
-``` html
+```html
 <h1>
   <a name="hello-world" href="#hello-world">
     Hello world!
@@ -20,13 +19,13 @@ Let's dive into a simple example where a `render` function would be practical. S
 
 For the HTML above, you decide you want this component interface:
 
-``` html
+```html
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
 When you get started with a component that only generates a heading based on the `level` prop, you quickly arrive at this:
 
-``` html
+```html
 <script type="text/x-template" id="anchored-heading-template">
   <h1 v-if="level === 1">
     <slot></slot>
@@ -49,7 +48,7 @@ When you get started with a component that only generates a heading based on the
 </script>
 ```
 
-``` js
+```js
 Vue.component('anchored-heading', {
   template: '#anchored-heading-template',
   props: {
@@ -65,7 +64,7 @@ That template doesn't feel great. It's not only verbose, but we're duplicating `
 
 While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render` function:
 
-``` js
+```js
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
@@ -112,7 +111,7 @@ Updating all these nodes efficiently can be difficult, but thankfully, you never
 
 Or a render function:
 
-``` js
+```js
 render: function (createElement) {
   return createElement('h1', this.blogTitle)
 }
@@ -124,17 +123,17 @@ And in both cases, Vue automatically keeps the page updated, even when `blogTitl
 
 Vue accomplishes this by building a **virtual DOM** to keep track of the changes it needs to make to the real DOM. Taking a closer look at this line:
 
-``` js
+```js
 return createElement('h1', this.blogTitle)
 ```
 
-What is `createElement` actually returning? It's not _exactly_ a real DOM element. It could perhaps more accurately be named `createNodeDescription`, as it contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
+What is `createElement` actually returning? It's not *exactly* a real DOM element. It could perhaps more accurately be named `createNodeDescription`, as it contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
 
 ## `createElement` Arguments
 
 The next thing you'll have to become familiar with is how to use template features in the `createElement` function. Here are the arguments that `createElement` accepts:
 
-``` js
+```js
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
@@ -168,7 +167,7 @@ createElement(
 
 One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects. This object also allows you to bind normal HTML attributes as well as DOM properties such as `innerHTML` (this would replace the `v-html` directive):
 
-``` js
+```js
 {
   // Same API as `v-bind:class`
   'class': {
@@ -237,7 +236,7 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
 
 With this knowledge, we can now finish the component we started:
 
-``` js
+```js
 var getChildrenTextContent = function (children) {
   return children.map(function (node) {
     return node.children
@@ -281,7 +280,7 @@ Vue.component('anchored-heading', {
 
 All VNodes in the component tree must be unique. That means the following render function is invalid:
 
-``` js
+```js
 render: function (createElement) {
   var myParagraphVNode = createElement('p', 'hi')
   return createElement('div', [
@@ -293,7 +292,7 @@ render: function (createElement) {
 
 If you really want to duplicate the same element/component many times, you can do so with a factory function. For example, the following render function is a perfectly valid way of rendering 20 identical paragraphs:
 
-``` js
+```js
 render: function (createElement) {
   return createElement('div',
     Array.apply(null, { length: 20 }).map(function () {
@@ -309,7 +308,7 @@ render: function (createElement) {
 
 Wherever something can be easily accomplished in plain JavaScript, Vue render functions do not provide a proprietary alternative. For example, in a template using `v-if` and `v-for`:
 
-``` html
+```html
 <ul v-if="items.length">
   <li v-for="item in items">{{ item.name }}</li>
 </ul>
@@ -318,7 +317,7 @@ Wherever something can be easily accomplished in plain JavaScript, Vue render fu
 
 This could be rewritten with JavaScript's `if`/`else` and `map` in a render function:
 
-``` js
+```js
 render: function (createElement) {
   if (this.items.length) {
     return createElement('ul', this.items.map(function (item) {
@@ -334,7 +333,7 @@ render: function (createElement) {
 
 There is no direct `v-model` counterpart in render functions - you will have to implement the logic yourself:
 
-``` js
+```js
 render: function (createElement) {
   var self = this
   return createElement('input', {
@@ -357,12 +356,13 @@ This is the cost of going lower-level, but it also gives you much more control o
 
 For the `.passive`, `.capture` and `.once` event modifiers, Vue offers prefixes that can be used with `on`:
 
-| Modifier(s) | Prefix |
-| ------ | ------ |
-| `.passive` | `&` |
-| `.capture` | `!` |
-| `.once` | `~` |
-| `.capture.once` or<br>`.once.capture` | `~!` |
+| Modifier(s)                          | Prefix  |
+| ------------------------------------ | ------- |
+| `.passive`                           | `&` |
+| `.capture`                           | `!`     |
+| `.once`                              | `~`     |
+| `.capture.once` or  
+`.once.capture` | `~!`    |
 
 For example:
 
@@ -376,13 +376,15 @@ on: {
 
 For all other event and key modifiers, no proprietary prefix is necessary, because you can use event methods in the handler:
 
-| Modifier(s) | Equivalent in Handler |
-| ------ | ------ |
-| `.stop` | `event.stopPropagation()` |
-| `.prevent` | `event.preventDefault()` |
-| `.self` | `if (event.target !== event.currentTarget) return` |
-| Keys:<br>`.enter`, `.13` | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
-| Modifiers Keys:<br>`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively) |
+| Modifier(s)                                          | Equivalent in Handler                                                                                                |
+| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `.stop`                                              | `event.stopPropagation()`                                                                                            |
+| `.prevent`                                           | `event.preventDefault()`                                                                                             |
+| `.self`                                              | `if (event.target !== event.currentTarget) return`                                                                   |
+| Keys:  
+`.enter`, `.13`                              | `if (event.keyCode !== 13) return` (change `13` to [another key code](http://keycode.info/) for other key modifiers) |
+| Modifiers Keys:  
+`.ctrl`, `.alt`, `.shift`, `.meta` | `if (!event.ctrlKey) return` (change `ctrlKey` to `altKey`, `shiftKey`, or `metaKey`, respectively)                  |
 
 Here's an example with all of these modifiers used together:
 
@@ -409,7 +411,7 @@ on: {
 
 You can access static slot contents as Arrays of VNodes from [`this.$slots`](../api/#vm-slots):
 
-``` js
+```js
 render: function (createElement) {
   // `<div><slot></slot></div>`
   return createElement('div', this.$slots.default)
@@ -418,7 +420,7 @@ render: function (createElement) {
 
 And access scoped slots as functions that return VNodes from [`this.$scopedSlots`](../api/#vm-scopedSlots):
 
-``` js
+```js
 render: function (createElement) {
   // `<div><slot :text="msg"></slot></div>`
   return createElement('div', [
@@ -431,7 +433,7 @@ render: function (createElement) {
 
 To pass scoped slots to a child component using render functions, use the `scopedSlots` field in VNode data:
 
-``` js
+```js
 render (createElement) {
   return createElement('div', [
     createElement('child', {
@@ -451,7 +453,7 @@ render (createElement) {
 
 If you're writing a lot of `render` functions, it might feel painful to write something like this:
 
-``` js
+```js
 createElement(
   'anchored-heading', {
     props: {
@@ -466,7 +468,7 @@ createElement(
 
 Especially when the template version is so simple in comparison:
 
-``` html
+```html
 <anchored-heading :level="1">
   <span>Hello</span> world!
 </anchored-heading>
@@ -474,7 +476,7 @@ Especially when the template version is so simple in comparison:
 
 That's why there's a [Babel plugin](https://github.com/vuejs/babel-plugin-transform-vue-jsx) to use JSX with Vue, getting us back to a syntax that's closer to templates:
 
-``` js
+```js
 import AnchoredHeading from './AnchoredHeading.vue'
 
 new Vue({
@@ -499,7 +501,7 @@ The anchored heading component we created earlier is relatively simple. It doesn
 
 In cases like this, we can mark components as `functional`, which means that they're stateless (no `data`) and instanceless (no `this` context). A **functional component** looks like this:
 
-``` js
+```js
 Vue.component('my-component', {
   functional: true,
   // To compensate for the lack of an instance,
@@ -537,7 +539,7 @@ They're also very useful as wrapper components. For example, when you need to:
 
 Here's an example of a `smart-list` component that delegates to more specific components, depending on the props passed to it:
 
-``` js
+```js
 var EmptyList = { /* ... */ }
 var TableList = { /* ... */ }
 var OrderedList = { /* ... */ }
@@ -576,7 +578,7 @@ Vue.component('smart-list', {
 
 You may wonder why we need both `slots()` and `children`. Wouldn't `slots().default` be the same as `children`? In some cases, yes - but what if you have a functional component with the following children?
 
-``` html
+```html
 <my-functional-component>
   <p slot="foo">
     first
@@ -592,6 +594,7 @@ For this component, `children` will give you both paragraphs, `slots().default` 
 You may be interested to know that Vue's templates actually compile to render functions. This is an implementation detail you usually don't need to know about, but if you'd like to see how specific template features are compiled, you may find it interesting. Below is a little demo using `Vue.compile` to live-compile a template string:
 
 {% raw %}
+
 <div id="vue-compile-demo" class="demo">
   <textarea v-model="templateText" rows="10"></textarea>
   <div v-if="typeof result === 'object'">
@@ -606,6 +609,7 @@ You may be interested to know that Vue's templates actually compile to render fu
     <pre><code>{{ result }}</code></pre>
   </div>
 </div>
+
 <script>
 new Vue({
   el: '#vue-compile-demo',
@@ -650,7 +654,8 @@ console.error = function (error) {
   throw new Error(error)
 }
 </script>
-<style>
+
+ <style>
 #vue-compile-demo {
   -webkit-user-select: inherit;
   user-select: inherit;
@@ -668,4 +673,7 @@ console.error = function (error) {
   font-family: monospace;
 }
 </style>
+
+ 
+
 {% endraw %}
