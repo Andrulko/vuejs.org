@@ -3,7 +3,6 @@ title: Production Deployment
 type: guide
 order: 401
 ---
-
 ## Turn on Production Mode
 
 During development, Vue provides a lot of warnings to help you with common errors and pitfalls. However, these warning strings become useless in production and bloat your app's payload size. In addition, some of these warning checks have small runtime costs that can be avoided in production mode.
@@ -20,7 +19,7 @@ When using a build tool like Webpack or Browserify, the production mode will be 
 
 Use Webpack's [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) to indicate a production environment, so that warning blocks can be automatically dropped by UglifyJS during minification. Example config:
 
-``` js
+```js
 var webpack = require('webpack')
 
 module.exports = {
@@ -41,16 +40,16 @@ module.exports = {
 - Run your bundling command with the actual `NODE_ENV` environment variable set to `"production"`. This tells `vueify` to avoid including hot-reload and development related code.
 
 - Apply a global [envify](https://github.com/hughsk/envify) transform to your bundle. This allows the minifier to strip out all the warnings in Vue's source code wrapped in env variable conditional blocks. For example:
-
-  ``` bash
-  NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
-  ```
+    
+    ```bash
+NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
+```
 
 #### Rollup
 
 Use [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
 
-``` js
+```js
 const replace = require('rollup-plugin-replace')
 
 rollup({
