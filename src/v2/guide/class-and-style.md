@@ -3,7 +3,6 @@ title: Binding cho class và style
 type: guide
 order: 6
 ---
-
 Một nhu cầu thường gặp khi thực hiện ràng buộc dữ liệu (data binding) là quản lí danh sách `class` và các `style` của một phần tử web. Vì cả `class` và `style` đều là thuộc tính, chúng ta có thể dùng `v-bind` để xử lí: chỉ cần sử dụng các biểu đạt (expression) để tạo ra một chuỗi. Tuy nhiên, vì can thiệp vào việc nối chuỗi rất phiền phức và dễ mắc lỗi, Vue cung cấp một số tính năng hỗ trợ khi `v-bind` được dùng với `class` và `style`. Không chỉ có chuỗi, các biểu đạt này có thể xử lí cả mảng và object.
 
 ## Binding class trong HTML
@@ -12,7 +11,7 @@ Một nhu cầu thường gặp khi thực hiện ràng buộc dữ liệu (data
 
 Ta có thể truyền một object vào `v-bind:class` để bật tắt class một cách linh hoạt:
 
-``` html
+```html
 <div v-bind:class="{ active: isActive }"></div>
 ```
 
@@ -20,7 +19,7 @@ Cú pháp như trên nghĩa là class `active` sẽ được áp dụng tùy the
 
 Bạn có thể bật tắt nhiều class bằng cách dùng nhiều field (trường) trong object. Thêm vào đó, directive `v-bind:class` và thuộc tính `class` thông thường có thể được dùng cùng lúc với nhau. Nếu chúng ta có template sau:
 
-``` html
+```html
 <div class="static"
      v-bind:class="{ active: isActive, 'text-danger': hasError }">
 </div>
@@ -28,7 +27,7 @@ Bạn có thể bật tắt nhiều class bằng cách dùng nhiều field (trư
 
 và dữ liệu truyền vào như thế này:
 
-``` js
+```js
 data: {
   isActive: true,
   hasError: false
@@ -37,7 +36,7 @@ data: {
 
 thì kết quả render sẽ là:
 
-``` html
+```html
 <div class="static active"></div>
 ```
 
@@ -45,10 +44,11 @@ Khi giá trị `isActive` hoặc `hasError` thay đổi, danh sách class sẽ �
 
 Object được bind cũng không bắt buộc phải khai báo trong template:
 
-``` html
+```html
 <div v-bind:class="classObject"></div>
 ```
-``` js
+
+```js
 data: {
   classObject: {
     active: true,
@@ -57,12 +57,13 @@ data: {
 }
 ```
 
-Ví dụ trên sẽ render ra cùng một kết quả. Chúng ta cũng có thể bind vào một [computed property (thuộc tính được tính toán)](computed.html) trả về một object. Dưới đây là một ví dụ điển hình cho kĩ thuật này: 
+Ví dụ trên sẽ render ra cùng một kết quả. Chúng ta cũng có thể bind vào một [computed property (thuộc tính được tính toán)](computed.html) trả về một object. Dưới đây là một ví dụ điển hình cho kĩ thuật này:
 
-``` html
+```html
 <div v-bind:class="classObject"></div>
 ```
-``` js
+
+```js
 data: {
   isActive: true,
   error: null
@@ -82,10 +83,11 @@ computed: {
 
 Chúng ta có thể truyền một mảng vào `v-bind:class` để áp dụng một danh sách class:
 
-``` html
+```html
 <div v-bind:class="[activeClass, errorClass]"></div>
 ```
-``` js
+
+```js
 data: {
   activeClass: 'active',
   errorClass: 'text-danger'
@@ -94,13 +96,13 @@ data: {
 
 sẽ render ra kết quả sau:
 
-``` html
+```html
 <div class="active text-danger"></div>
 ```
 
 Nếu muốn bật tắt theo điều kiện một class trong danh sách, bạn có thể dùng một toán tử ba ngôi (ternary expression):
 
-``` html
+```html
 <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
 ```
 
@@ -108,7 +110,7 @@ Nếu muốn bật tắt theo điều kiện một class trong danh sách, bạn
 
 Cách làm này có thể hơi dài dòng nếu bạn có nhiều class theo điều kiện. Do đó, bạn có thể dùng cú pháp object bên trong cú pháp mảng, như sau:
 
-``` html
+```html
 <div v-bind:class="[{ active: isActive }, errorClass]"></div>
 ```
 
@@ -120,7 +122,7 @@ Khi sử dụng thuộc tính `class` trên một component tùy biến, những
 
 Ví dụ, nếu bạn khai báo một component với một số class có sẵn như sau:
 
-``` js
+```js
 Vue.component('my-component', {
   template: '<p class="foo bar"></p>'
 })
@@ -128,25 +130,25 @@ Vue.component('my-component', {
 
 sau đó khi dùng component này bạn lại khai báo một số class khác:
 
-``` html
+```html
 <my-component class="baz qux"></my-component>
 ```
 
 thì kết quả HTML tạo thành sẽ là:
 
-``` html
+```html
 <p class="foo bar baz qux"></p>
 ```
 
-Binding cho class cũng vậy: 
+Binding cho class cũng vậy:
 
-``` html
+```html
 <my-component v-bind:class="{ active: isActive }"></my-component>
 ```
 
 Khi `isActive` mang giá trị đúng, kết quả HTML sẽ là:
 
-``` html
+```html
 <p class="foo bar active"></p>
 ```
 
@@ -158,10 +160,11 @@ Khi `isActive` mang giá trị đúng, kết quả HTML sẽ là:
 
 Cú pháp object của `v-bind:style` rất đơn giản - trông giống như CSS thông thường, chỉ khác ở chỗ nó là một object JavaScript. Bạn có thể dùng camelCase hoặc kebab-case (đặt trong dấu nháy nếu là kebab-case) đối với tên thuộc tính CSS:
 
-``` html
+```html
 <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }"></div>
 ```
-``` js
+
+```js
 data: {
   activeColor: 'red',
   fontSize: 30
@@ -170,10 +173,11 @@ data: {
 
 Thông thường thì ta nên bind vào một object dành riêng cho style để template được gọn gàng hơn:
 
-``` html
+```html
 <div v-bind:style="styleObject"></div>
 ```
-``` js
+
+```js
 data: {
   styleObject: {
     color: 'red',
@@ -188,7 +192,7 @@ Một lần nữa, cú pháp object thường được dùng kết hợp với c
 
 Cú pháp mảng của `v-bind:style` giúp bạn áp dụng nhiều object style cho cùng một phần tử web:
 
-``` html
+```html
 <div v-bind:style="[baseStyles, overridingStyles]"></div>
 ```
 
@@ -202,7 +206,7 @@ Khi bạn sử dụng một thuộc tính CSS còn khá mới và cần [vendor 
 
 Bắt đầu từ phiên bản 2.3.0+ bạn có thể cung cấp một mảng các giá trị (đã có prefix) cho một thuộc tính CSS, như sau:
 
-``` html
+```html
 <div v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
 ```
 
