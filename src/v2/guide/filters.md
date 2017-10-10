@@ -3,10 +3,9 @@ title: Filters
 type: guide
 order: 305
 ---
-
 Vue.js allows you to define filters that can be used to apply common text formatting. Filters are usable in two places: **mustache interpolations and `v-bind` expressions** (the latter supported in 2.1.0+). Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
 
-``` html
+```html
 <!-- in mustaches -->
 {{ message | capitalize }}
 
@@ -16,7 +15,7 @@ Vue.js allows you to define filters that can be used to apply common text format
 
 The filter function always receives the expression's value (the result of the former chain) as its first argument. In this example, the `capitalize` filter function will receive the value of `message` as its argument.
 
-``` js
+```js
 new Vue({
   // ...
   filters: {
@@ -31,7 +30,7 @@ new Vue({
 
 Filters can be chained:
 
-``` html
+```html
 {{ message | filterA | filterB }}
 ```
 
@@ -39,7 +38,7 @@ In this case, `filterA`, defined with a single argument, will receive the value 
 
 Filters are JavaScript functions, therefore they can take arguments:
 
-``` html
+```html
 {{ message | filterA('arg1', arg2) }}
 ```
 
