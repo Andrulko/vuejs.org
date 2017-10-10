@@ -3,20 +3,19 @@ title: State Management
 type: guide
 order: 502
 ---
-
 ## Official Flux-Like Implementation
 
 Large applications can often grow in complexity, due to multiple pieces of state scattered across many components and the interactions between them. To solve this problem, Vue offers [vuex](https://github.com/vuejs/vuex): our own Elm-inspired state management library. It even integrates into [vue-devtools](https://github.com/vuejs/vue-devtools), providing zero-setup access to time travel.
 
 ### Information for React Developers
 
-If you're coming from React, you may be wondering how vuex compares to [redux](https://github.com/reactjs/redux), the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via [simple bindings](https://github.com/egoist/revue). Vuex is different in that it _knows_ it's in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.
+If you're coming from React, you may be wondering how vuex compares to [redux](https://github.com/reactjs/redux), the most popular Flux implementation in that ecosystem. Redux is actually view-layer agnostic, so it can easily be used with Vue via [simple bindings](https://github.com/egoist/revue). Vuex is different in that it *knows* it's in a Vue app. This allows it to better integrate with Vue, offering a more intuitive API and improved development experience.
 
 ## Simple State Management from Scratch
 
 It is often overlooked that the source of truth in Vue applications is the raw `data` object - a Vue instance only proxies access to it. Therefore, if you have a piece of state that should be shared by multiple instances, you can share it by identity:
 
-``` js
+```js
 const sourceOfTruth = {}
 
 const vmA = new Vue({
@@ -32,7 +31,7 @@ Now whenever `sourceOfTruth` is mutated, both `vmA` and `vmB` will update their 
 
 To help solve this problem, we can adopt a **store pattern**:
 
-``` js
+```js
 var store = {
   debug: true,
   state: {
@@ -53,7 +52,7 @@ Notice all actions that mutate the store's state are put inside the store itself
 
 In addition, each instance/component can still own and manage its own private state:
 
-``` js
+```js
 var vmA = new Vue({
   data: {
     privateState: {},
