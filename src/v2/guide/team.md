@@ -3,8 +3,8 @@ title: Meet the Team
 type: guide
 order: 803
 ---
+{% raw %} 
 
-{% raw %}
 <script id="vuer-profile-template" type="text/template">
   <div class="vuer">
     <div class="avatar">
@@ -105,88 +105,51 @@ order: 803
   </div>
 </script>
 
+ 
+
 <div id="team-members">
   <div class="team">
-
     <h2 id="the-core-team">
-      The Core Team
-      <button
-        v-if="geolocationSupported && !userPosition"
-        @click="getUserPosition"
-        :disabled="isSorting"
-        class="sort-by-distance-button"
-      >
-        <i
+      The Core Team <button v-if="geolocationSupported && !userPosition" @click="getUserPosition" :disabled="isSorting" class="sort-by-distance-button" > <i
           v-if="isSorting"
           class="fa fa-refresh rotating-clockwise"
-        ></i>
-        <template v-else>
-          <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
-        </template>
-      </button>
+        ></i> <template v-else> <i class="fa fa-map-marker"></i> <span>find near me</span> </template> </button>
     </h2>
-
+    
     <p v-if="errorGettingLocation" class="tip">
       Failed to get your location.
     </p>
-
+    
     <p>
       The development of Vue and its ecosystem is guided by an international team, some of whom have chosen to be featured below.
     </p>
-
+    
     <p v-if="userPosition" class="success">
       The core team has been sorted by their distance from you.
-    </p>
-
-    <vuer-profile
-      v-for="profile in sortedTeam"
-      :key="profile.github"
-      :profile="profile"
-      :title-visible="titleVisible"
-    ></vuer-profile>
+    </p><vuer-profile v-for="profile in sortedTeam" :key="profile.github" :profile="profile" :title-visible="titleVisible" ></vuer-profile>
   </div>
-
+  
   <div class="team">
     <h2 id="community-partners">
-      Community Partners
-      <button
-        v-if="geolocationSupported && !userPosition"
-        @click="getUserPosition"
-        :disabled="isSorting"
-        class="sort-by-distance-button"
-      >
-        <i
+      Community Partners <button v-if="geolocationSupported && !userPosition" @click="getUserPosition" :disabled="isSorting" class="sort-by-distance-button" > <i
           v-if="isSorting"
           class="fa fa-refresh rotating-clockwise"
-        ></i>
-        <template v-else>
-          <i class="fa fa-map-marker"></i>
-          <span>find near me</span>
-        </template>
-      </button>
+        ></i> <template v-else> <i class="fa fa-map-marker"></i> <span>find near me</span> </template> </button>
     </h2>
-
+    
     <p v-if="errorGettingLocation" class="tip">
       Failed to get your location.
     </p>
-
+    
     <p>
       Some members of the Vue community have so enriched it, that they deserve special mention. We've developed a more intimate relationship with these key partners, often coordinating with them on upcoming features and news.
     </p>
-
+    
     <p v-if="userPosition" class="success">
       The community partners have been sorted by their distance from you.
-    </p>
-
-    <vuer-profile
-      v-for="profile in sortedPartners"
-      :key="profile.github"
-      :profile="profile"
-      :title-visible="titleVisible"
-    ></vuer-profile>
+    </p><vuer-profile v-for="profile in sortedPartners" :key="profile.github" :profile="profile" :title-visible="titleVisible" ></vuer-profile>
   </div>
-</div>
+</div> 
 
 <script>
 (function () {
@@ -1062,4 +1025,7 @@ order: 803
   }
 })()
 </script>
+
+ 
+
 {% endraw %}
