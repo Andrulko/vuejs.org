@@ -1,8 +1,7 @@
 ---
-title: "Why Vue.js doesn't support templateURL"
-date: 2015-10-28 10:56:00
+title: Why Vue.js doesn't support templateURL
+date: '2015-10-28 10:56:00'
 ---
-
 A very common question from new Vue users, especially those who used Angular before, is "can I have `templateURL`?". I have answered this so many times and I figure it's better to write something about it.
 
 <!-- more -->
