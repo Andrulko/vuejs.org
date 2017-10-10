@@ -3,7 +3,6 @@ title: Template Syntax
 type: guide
 order: 4
 ---
-
 Vue.js uses an HTML-based template syntax that allows you to declaratively bind the rendered DOM to the underlying Vue instance's data. All Vue.js templates are valid HTML that can be parsed by spec-compliant browsers and HTML parsers.
 
 Under the hood, Vue compiles the templates into Virtual DOM render functions. Combined with the reactivity system, Vue is able to intelligently figure out the minimal amount of components to re-render and apply the minimal amount of DOM manipulations when the app state changes.
@@ -16,7 +15,7 @@ If you are familiar with Virtual DOM concepts and prefer the raw power of JavaSc
 
 The most basic form of data binding is text interpolation using the "Mustache" syntax (double curly braces):
 
-``` html
+```html
 <span>Message: {{ msg }}</span>
 ```
 
@@ -24,7 +23,7 @@ The mustache tag will be replaced with the value of the `msg` property on the co
 
 You can also perform one-time interpolations that do not update on data change by using the [v-once directive](../api/#v-once), but keep in mind this will also affect any binding on the same node:
 
-``` html
+```html
 <span v-once>This will never change: {{ msg }}</span>
 ```
 
@@ -32,7 +31,7 @@ You can also perform one-time interpolations that do not update on data change b
 
 The double mustaches interprets the data as plain text, not HTML. In order to output real HTML, you will need to use the `v-html` directive:
 
-``` html
+```html
 <div v-html="rawHtml"></div>
 ```
 
@@ -44,13 +43,13 @@ The contents of this `div` will be replaced with the value of the `rawHtml` prop
 
 Mustaches cannot be used inside HTML attributes, instead use a [v-bind directive](../api/#v-bind):
 
-``` html
+```html
 <div v-bind:id="dynamicId"></div>
 ```
 
 It also works for boolean attributes - the attribute will be removed if the condition evaluates to a falsy value:
 
-``` html
+```html
 <button v-bind:disabled="isButtonDisabled">Button</button>
 ```
 
@@ -58,7 +57,7 @@ It also works for boolean attributes - the attribute will be removed if the cond
 
 So far we've only been binding to simple property keys in our templates. But Vue.js actually supports the full power of JavaScript expressions inside all data bindings:
 
-``` html
+```html
 {{ number + 1 }}
 
 {{ ok ? 'YES' : 'NO' }}
@@ -70,7 +69,7 @@ So far we've only been binding to simple property keys in our templates. But Vue
 
 These expressions will be evaluated as JavaScript in the data scope of the owner Vue instance. One restriction is that each binding can only contain **one single expression**, so the following will **NOT** work:
 
-``` html
+```html
 <!-- this is a statement, not an expression: -->
 {{ var a = 1 }}
 
@@ -84,7 +83,7 @@ These expressions will be evaluated as JavaScript in the data scope of the owner
 
 Directives are special attributes with the `v-` prefix. Directive attribute values are expected to be **a single JavaScript expression** (with the exception for `v-for`, which will be discussed later). A directive's job is to reactively apply side effects to the DOM when the value of its expression changes. Let's review the example we saw in the introduction:
 
-``` html
+```html
 <p v-if="seen">Now you see me</p>
 ```
 
@@ -94,7 +93,7 @@ Here, the `v-if` directive would remove/insert the `<p>` element based on the tr
 
 Some directives can take an "argument", denoted by a colon after the directive name. For example, the `v-bind` directive is used to reactively update an HTML attribute:
 
-``` html
+```html
 <a v-bind:href="url"></a>
 ```
 
@@ -102,7 +101,7 @@ Here `href` is the argument, which tells the `v-bind` directive to bind the elem
 
 Another example is the `v-on` directive, which listens to DOM events:
 
-``` html
+```html
 <a v-on:click="doSomething">
 ```
 
@@ -112,7 +111,7 @@ Here the argument is the event name to listen to. We will talk about event handl
 
 Modifiers are special postfixes denoted by a dot, which indicate that a directive should be bound in some special way. For example, the `.prevent` modifier tells the `v-on` directive to call `event.preventDefault()` on the triggered event:
 
-``` html
+```html
 <form v-on:submit.prevent="onSubmit"></form>
 ```
 
@@ -124,7 +123,7 @@ The `v-` prefix serves as a visual cue for identifying Vue-specific attributes i
 
 ### `v-bind` Shorthand
 
-``` html
+```html
 <!-- full syntax -->
 <a v-bind:href="url"></a>
 
@@ -134,7 +133,7 @@ The `v-` prefix serves as a visual cue for identifying Vue-specific attributes i
 
 ### `v-on` Shorthand
 
-``` html
+```html
 <!-- full syntax -->
 <a v-on:click="doSomething"></a>
 
