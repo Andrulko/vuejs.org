@@ -3,12 +3,11 @@ title: List Rendering
 type: guide
 order: 8
 ---
-
 ## Mapping an Array to Elements with `v-for`
 
 We can use the `v-for` directive to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an **alias** for the array element being iterated on:
 
-``` html
+```html
 <ul id="example-1">
   <li v-for="item in items">
     {{ item.message }}
@@ -16,7 +15,7 @@ We can use the `v-for` directive to render a list of items based on an array. Th
 </ul>
 ```
 
-``` js
+```js
 var example1 = new Vue({
   el: '#example-1',
   data: {
@@ -31,11 +30,13 @@ var example1 = new Vue({
 Result:
 
 {% raw %}
+
 <ul id="example-1" class="demo">
   <li v-for="item in items">
     {{item.message}}
   </li>
-</ul>
+</ul> 
+
 <script>
 var example1 = new Vue({
   el: '#example-1',
@@ -52,11 +53,14 @@ var example1 = new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 Inside `v-for` blocks we have full access to parent scope properties. `v-for` also supports an optional second argument for the index of the current item.
 
-``` html
+```html
 <ul id="example-2">
   <li v-for="(item, index) in items">
     {{ parentMessage }} - {{ index }} - {{ item.message }}
@@ -64,7 +68,7 @@ Inside `v-for` blocks we have full access to parent scope properties. `v-for` al
 </ul>
 ```
 
-``` js
+```js
 var example2 = new Vue({
   el: '#example-2',
   data: {
@@ -80,11 +84,13 @@ var example2 = new Vue({
 Result:
 
 {% raw%}
+
 <ul id="example-2" class="demo">
   <li v-for="(item, index) in items">
     {{ parentMessage }} - {{ index }} - {{ item.message }}
   </li>
-</ul>
+</ul> 
+
 <script>
 var example2 = new Vue({
   el: '#example-2',
@@ -102,11 +108,14 @@ var example2 = new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 You can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript's syntax for iterators:
 
-``` html
+```html
 <div v-for="item of items"></div>
 ```
 
@@ -114,7 +123,7 @@ You can also use `of` as the delimiter instead of `in`, so that it is closer to 
 
 You can also use `v-for` to iterate through the properties of an object.
 
-``` html
+```html
 <ul id="v-for-object" class="demo">
   <li v-for="value in object">
     {{ value }}
@@ -122,7 +131,7 @@ You can also use `v-for` to iterate through the properties of an object.
 </ul>
 ```
 
-``` js
+```js
 new Vue({
   el: '#v-for-object',
   data: {
@@ -138,11 +147,13 @@ new Vue({
 Result:
 
 {% raw %}
+
 <ul id="v-for-object" class="demo">
   <li v-for="value in object">
     {{ value }}
   </li>
-</ul>
+</ul> 
+
 <script>
 new Vue({
   el: '#v-for-object',
@@ -155,22 +166,27 @@ new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 You can also provide a second argument for the key:
 
-``` html
+```html
 <div v-for="(value, key) in object">
   {{ key }}: {{ value }}
 </div>
 ```
 
 {% raw %}
+
 <div id="v-for-object-value-key" class="demo">
   <div v-for="(value, key) in object">
     {{ key }}: {{ value }}
   </div>
-</div>
+</div> 
+
 <script>
 new Vue({
   el: '#v-for-object-value-key',
@@ -183,22 +199,27 @@ new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 And another for the index:
 
-``` html
+```html
 <div v-for="(value, key, index) in object">
   {{ index }}. {{ key }}: {{ value }}
 </div>
 ```
 
 {% raw %}
+
 <div id="v-for-object-value-key-index" class="demo">
   <div v-for="(value, key, index) in object">
     {{ index }}. {{ key }}: {{ value }}
   </div>
-</div>
+</div> 
+
 <script>
 new Vue({
   el: '#v-for-object-value-key-index',
@@ -211,9 +232,14 @@ new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
-<p class="tip">When iterating over an object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent across JavaScript engine implementations.</p>
+<p class="tip">
+  When iterating over an object, the order is based on the key enumeration order of `Object.keys()`, which is **not** guaranteed to be consistent across JavaScript engine implementations.
+</p>
 
 ## `key`
 
@@ -223,7 +249,7 @@ This default mode is efficient, but only suitable **when your list render output
 
 To give Vue a hint so that it can track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item. An ideal value for `key` would be the unique id of each item. This special attribute is a rough equivalent to `track-by` in 1.x, but it works like an attribute, so you need to use `v-bind` to bind it to dynamic values (using shorthand here):
 
-``` html
+```html
 <div v-for="item in items" :key="item.id">
   <!-- content -->
 </div>
@@ -253,7 +279,7 @@ You can open the console and play with the previous examples' `items` array by c
 
 Mutation methods, as the name suggests, mutate the original array they are called on. In comparison, there are also non-mutating methods, e.g. `filter()`, `concat()` and `slice()`, which do not mutate the original array but **always return a new array**. When working with non-mutating methods, you can replace the old array with the new one:
 
-``` js
+```js
 example1.items = example1.items.filter(function (item) {
   return item.message.match(/Foo/)
 })
@@ -270,18 +296,19 @@ Due to limitations in JavaScript, Vue **cannot** detect the following changes to
 
 To overcome caveat 1, both of the following will accomplish the same as `vm.items[indexOfItem] = newValue`, but will also trigger state updates in the reactivity system:
 
-``` js
+```js
 // Vue.set
 Vue.set(example1.items, indexOfItem, newValue)
 ```
-``` js
+
+```js
 // Array.prototype.splice
 example1.items.splice(indexOfItem, 1, newValue)
 ```
 
 To deal with caveat 2, you can use `splice`:
 
-``` js
+```js
 example1.items.splice(newLength)
 ```
 
@@ -289,7 +316,7 @@ example1.items.splice(newLength)
 
 Again due to limitations of modern JavaScript, **Vue cannot detect property addition or deletion**. For example:
 
-``` js
+```js
 var vm = new Vue({
   data: {
     a: 1
@@ -303,7 +330,7 @@ vm.b = 2
 
 Vue does not allow dynamically adding new root-level reactive properties to an already created instance. However, it's possible to add reactive properties to a nested object using the `Vue.set(object, key, value)` method. For example, given:
 
-``` js
+```js
 var vm = new Vue({
   data: {
     userProfile: {
@@ -315,19 +342,19 @@ var vm = new Vue({
 
 You could add a new `age` property to the nested `userProfile` object with:
 
-``` js
+```js
 Vue.set(vm.userProfile, 'age', 27)
 ```
 
 You can also use the `vm.$set` instance method, which is an alias for the global `Vue.set`:
 
-``` js
+```js
 this.$set(this.userProfile, 'age', 27)
 ```
 
 Sometimes you may want to assign a number of new properties to an existing object, for example using `Object.assign()` or `_.extend()`. In such cases, you should create a fresh object with properties from both objects. So instead of:
 
-``` js
+```js
 Object.assign(this.userProfile, {
   age: 27,
   favoriteColor: 'Vue Green'
@@ -336,7 +363,7 @@ Object.assign(this.userProfile, {
 
 You would add new, reactive properties with:
 
-``` js
+```js
 this.userProfile = Object.assign({}, this.userProfile, {
   age: 27,
   favoriteColor: 'Vue Green'
@@ -349,11 +376,11 @@ Sometimes we want to display a filtered or sorted version of an array without ac
 
 For example:
 
-``` html
+```html
 <li v-for="n in evenNumbers">{{ n }}</li>
 ```
 
-``` js
+```js
 data: {
   numbers: [ 1, 2, 3, 4, 5 ]
 },
@@ -368,11 +395,11 @@ computed: {
 
 In situations where computed properties are not feasible (e.g. inside nested `v-for` loops), you can use a method:
 
-``` html
+```html
 <li v-for="n in even(numbers)">{{ n }}</li>
 ```
 
-``` js
+```js
 data: {
   numbers: [ 1, 2, 3, 4, 5 ]
 },
@@ -389,7 +416,7 @@ methods: {
 
 `v-for` can also take an integer. In this case it will repeat the template that many times.
 
-``` html
+```html
 <div>
   <span v-for="n in 10">{{ n }} </span>
 </div>
@@ -398,19 +425,24 @@ methods: {
 Result:
 
 {% raw %}
+
 <div id="range" class="demo">
   <span v-for="n in 10">{{ n }} </span>
-</div>
+</div> 
+
 <script>
   new Vue({ el: '#range' })
 </script>
+
+ 
+
 {% endraw %}
 
 ## `v-for` on a `<template>`
 
 Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to render a block of multiple elements. For example:
 
-``` html
+```html
 <ul>
   <template v-for="item in items">
     <li>{{ item.msg }}</li>
@@ -421,9 +453,9 @@ Similar to template `v-if`, you can also use a `<template>` tag with `v-for` to 
 
 ## `v-for` with `v-if`
 
-When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This can be useful when you want to render nodes for only _some_ items, like below:
+When they exist on the same node, `v-for` has a higher priority than `v-if`. That means the `v-if` will be run on each iteration of the loop separately. This can be useful when you want to render nodes for only *some* items, like below:
 
-``` html
+```html
 <li v-for="todo in todos" v-if="!todo.isComplete">
   {{ todo }}
 </li>
@@ -433,7 +465,7 @@ The above only renders the todos that are not complete.
 
 If instead, your intent is to conditionally skip execution of the loop, you can place the `v-if` on a wrapper element (or [`<template>`](conditional.html#Conditional-Groups-with-v-if-on-lt-template-gt)). For example:
 
-``` html
+```html
 <ul v-if="todos.length">
   <li v-for="todo in todos">
     {{ todo }}
@@ -448,7 +480,7 @@ If instead, your intent is to conditionally skip execution of the loop, you can 
 
 You can directly use `v-for` on a custom component, like any normal element:
 
-``` html
+```html
 <my-component v-for="item in items" :key="item.id"></my-component>
 ```
 
@@ -456,7 +488,7 @@ You can directly use `v-for` on a custom component, like any normal element:
 
 However, this won't automatically pass any data to the component, because components have isolated scopes of their own. In order to pass the iterated data into the component, we should also use props:
 
-``` html
+```html
 <my-component
   v-for="(item, index) in items"
   v-bind:item="item"
@@ -469,7 +501,7 @@ The reason for not automatically injecting `item` into the component is because 
 
 Here's a complete example of a simple todo list:
 
-``` html
+```html
 <div id="todo-list-example">
   <input
     v-model="newTodoText"
@@ -488,15 +520,19 @@ Here's a complete example of a simple todo list:
 </div>
 ```
 
-<p class="tip">Note the `is="todo-item"` attribute. This is necessary in DOM templates, because only an `<li>` element is valid inside a `<ul>`. It does the same thing as `<todo-item>`, but works around a potential browser parsing error. See [DOM Template Parsing Caveats](components.html#DOM-Template-Parsing-Caveats) to learn more.</p>
-
-``` js
-Vue.component('todo-item', {
+<p class="tip">
+  Note the `is="todo-item"` attribute. This is necessary in DOM templates, because only an `
+  
+  <li>
+    ` element is valid inside a `<ul>
+      `. It does the same thing as `<todo-item>`, but works around a potential browser parsing error. See [DOM Template Parsing Caveats](components.html#DOM-Template-Parsing-Caveats) to learn more.</p> 
+      
+      <pre><code class="js">Vue.component('todo-item', {
   template: '\
-    <li>\
+    &lt;li&gt;\
       {{ title }}\
-      <button v-on:click="$emit(\'remove\')">X</button>\
-    </li>\
+      &lt;button v-on:click="$emit(\'remove\')"&gt;X&lt;/button&gt;\
+    &lt;/li&gt;\
   ',
   props: ['title']
 })
@@ -531,25 +567,25 @@ new Vue({
     }
   }
 })
-```
-
-{% raw %}
-<div id="todo-list-example" class="demo">
-  <input
-    v-model="newTodoText"
-    v-on:keyup.enter="addNewTodo"
-    placeholder="Add a todo"
-  >
-  <ul>
-    <li
+</code></pre>
+      <p>
+        {% raw %}
+      </p>
+      <div id="todo-list-example" class="demo">
+        <input v-model="newTodoText" v-on:keyup.enter="addNewTodo" placeholder="Add a todo" > 
+        
+        <ul>
+          <li
       is="todo-item"
       v-for="(todo, index) in todos"
       v-bind:key="todo.id"
       v-bind:title="todo.title"
       v-on:remove="todos.splice(index, 1)"
-    ></li>
-  </ul>
-</div>
+    >
+          </li>
+        </ul>
+      </div> 
+
 <script>
 Vue.component('todo-item', {
   template: '\
@@ -592,4 +628,9 @@ new Vue({
   }
 })
 </script>
-{% endraw %}
+
+ 
+      
+      <p>
+        {% endraw %}
+      </p>
