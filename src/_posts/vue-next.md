@@ -1,8 +1,7 @@
 ---
 title: Vue.js 0.10.6, and what's next
-date: 2014-07-29 00:04:55
+date: '2014-07-29 00:04:55'
 ---
-
 ## 0.10.6
 
 Vue.js 0.10.6 has been released! This is another small bug-fix release and will be the last maintenance version before the next major release.
