@@ -3,7 +3,6 @@ title: Single File Components
 type: guide
 order: 402
 ---
-
 ## Introduction
 
 In many Vue projects, global components will be defined using `Vue.component`, followed by `new Vue({ el: '#container' })` to target a container element in the body of every page.
@@ -19,7 +18,7 @@ All of these are solved by **single-file components** with a `.vue` extension, m
 
 Here's an example of a file we'll call `Hello.vue`:
 
-<img src="/images/vue-component.png" style="display: block; margin: 30px auto;">
+<img src="/images/vue-component.png" style="display: block; margin: 30px auto;" />
 
 Now we get:
 
@@ -29,7 +28,7 @@ Now we get:
 
 As promised, we can also use preprocessors such as Pug, Babel (with ES2015 modules), and Stylus for cleaner and more feature-rich components.
 
-<img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto;">
+<img src="/images/vue-component-with-preprocessors.png" style="display: block; margin: 30px auto;" />
 
 These specific languages are only examples. You could as easily use Bublé, TypeScript, SCSS, PostCSS - or whatever other preprocessors that help you be productive. If using Webpack with `vue-loader`, it also has first-class support for CSS Modules.
 
@@ -39,7 +38,7 @@ One important thing to note is that **separation of concerns is not equal to sep
 
 Even if you don't like the idea of Single-File Components, you can still leverage its hot-reloading and pre-compilation features by separating your JavaScript and CSS into separate files:
 
-``` html
+```html
 <!-- my-component.vue -->
 <template>
   <div>This will be pre-compiled</div>
@@ -58,7 +57,7 @@ If you want to dive right in and start playing with single-file components, chec
 
 With `.vue` components, we're entering the realm of advanced JavaScript applications. That means learning to use a few additional tools if you haven't already:
 
-- **Node Package Manager (NPM)**: Read the [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) through section _10: Uninstalling global packages_.
+- **Node Package Manager (NPM)**: Read the [Getting Started guide](https://docs.npmjs.com/getting-started/what-is-npm) through section *10: Uninstalling global packages*.
 
 - **Modern JavaScript with ES2015/16**: Read through Babel's [Learn ES2015 guide](https://babeljs.io/docs/learn-es2015/). You don't have to memorize every feature right now, but keep this page as a reference you can come back to.
 
