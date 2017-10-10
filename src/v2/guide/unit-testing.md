@@ -3,7 +3,6 @@ title: Unit Testing
 type: guide
 order: 403
 ---
-
 ## Setup and Tooling
 
 Anything compatible with a module-based build system will work, but if you're looking for a specific recommendation try the [Karma](http://karma-runner.github.io) test runner. It has a lot of community plugins, including support for [Webpack](https://github.com/webpack/karma-webpack) and [Browserify](https://github.com/Nikku/karma-browserify). For detailed setup please refer to each project's respective documentation. These example Karma configurations for [Webpack](https://github.com/vuejs-templates/webpack/blob/master/template/test/unit/karma.conf.js) and [Browserify](https://github.com/vuejs-templates/browserify/blob/master/template/karma.conf.js) can help you get started.
@@ -12,7 +11,7 @@ Anything compatible with a module-based build system will work, but if you're lo
 
 You don't have to do anything special in your components to make them testable. Export the raw options:
 
-``` html
+```html
 <template>
   <span>{{ message }}</span>
 </template>
@@ -33,7 +32,7 @@ You don't have to do anything special in your components to make them testable. 
 
 Then import the component options along with Vue, and you can make many common assertions:
 
-``` js
+```js
 // Import Vue and the component being tested
 import Vue from 'vue'
 import MyComponent from 'path/to/MyComponent.vue'
@@ -73,7 +72,7 @@ describe('MyComponent', () => {
 
 A component's render output is primarily determined by the props they receive. If a component's render output solely depends on its props it becomes straightforward to test, similar to asserting the return value of a pure function with different arguments. Take a simplified example:
 
-``` html
+```html
 <template>
   <p>{{ msg }}</p>
 </template>
@@ -87,7 +86,7 @@ A component's render output is primarily determined by the props they receive. I
 
 You can assert its render output with different props using the `propsData` option:
 
-``` js
+```js
 import Vue from 'vue'
 import MyComponent from './MyComponent.vue'
 
@@ -115,7 +114,7 @@ describe('MyComponent', () => {
 
 Since Vue [performs DOM updates asynchronously](reactivity.html#Async-Update-Queue), assertions on DOM updates resulting from state change will have to be made in a `Vue.nextTick` callback:
 
-``` js
+```js
 // Inspect the generated HTML after a state update
 it('updates the rendered message when vm.message updates', done => {
   const vm = new Vue(MyComponent).$mount()
