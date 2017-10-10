@@ -1,8 +1,7 @@
 ---
 title: Announcing vue-cli
-date: 2015-12-28 00:00:00
+date: '2015-12-28 00:00:00'
 ---
-
 Recently there has been a lot of [discussion around the tooling hurdle](https://medium.com/@ericclemmons/javascript-fatigue-48d4011b6fc4#.chg95e5p6) when you start a React project. Luckily for Vue.js, all you need to do to start with a quick prototype is including it from a CDN via a `<script>` tag, so we've got that part covered. However, that's not how you'd build a real world application. In real world applications we inevitably need a certain amount of tooling to give us modularization, transpilers, pre-processors, hot-reload, linting and testing. These tools are necessary for the long-term maintainability and productivity of large projects, but the initial setup can be a big pain. This is why we are announcing [vue-cli](https://github.com/vuejs/vue-cli), a simple CLI tool to help you quickly scaffold Vue.js projects with opinionated, battery-included build setups.
 
 <!-- more -->
@@ -11,7 +10,7 @@ Recently there has been a lot of [discussion around the tooling hurdle](https://
 
 The usage looks like this:
 
-``` bash
+```bash
 npm install -g vue-cli
 vue init webpack my-project
 # answer prompts
@@ -42,7 +41,7 @@ Current available templates include:
 
 If you are not happy with the official templates, you can fork these templates, modify them to fit your specific needs (or even create your own from scratch), and use them via `vue-cli` too, because `vue-cli` can work directly on GitHub repos:
 
-``` bash
+```bash
 vue init username/repo my-project
 ```
 
