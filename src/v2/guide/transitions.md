@@ -3,7 +3,6 @@ title: Enter/Leave & List Transitions
 type: guide
 order: 201
 ---
-
 ## Overview
 
 Vue provides a variety of ways to apply transition effects when items are inserted, updated, or removed from the DOM. This includes tools to:
@@ -26,7 +25,7 @@ Vue provides a `transition` wrapper component, allowing you to add entering/leav
 
 This is what an example looks like in action:
 
-``` html
+```html
 <div id="demo">
   <button v-on:click="show = !show">
     Toggle
@@ -37,7 +36,7 @@ This is what an example looks like in action:
 </div>
 ```
 
-``` js
+```js
 new Vue({
   el: '#demo',
   data: {
@@ -46,7 +45,7 @@ new Vue({
 })
 ```
 
-``` css
+```css
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
@@ -56,14 +55,15 @@ new Vue({
 ```
 
 {% raw %}
+
 <div id="demo">
-  <button v-on:click="show = !show">
-    Toggle
-  </button>
-  <transition name="demo-transition">
-    <p v-if="show">hello</p>
-  </transition>
-</div>
+  <button v-on:click="show = !show"> Toggle </button> <transition name="demo-transition"> 
+  
+  <p v-if="show">
+    hello
+  </p></transition>
+</div> 
+
 <script>
 new Vue({
   el: '#demo',
@@ -72,7 +72,8 @@ new Vue({
   }
 })
 </script>
-<style>
+
+ <style>
 .demo-transition-enter-active, .demo-transition-leave-active {
   transition: opacity .5s
 }
@@ -80,6 +81,9 @@ new Vue({
   opacity: 0
 }
 </style>
+
+ 
+
 {% endraw %}
 
 When an element wrapped in a `transition` component is inserted or removed, this is what happens:
@@ -116,7 +120,7 @@ Each of these classes will be prefixed with the name of the transition. Here the
 
 One of the most common transition types uses CSS transitions. Here's an example:
 
-``` html
+```html
 <div id="example-1">
   <button @click="show = !show">
     Toggle render
@@ -127,7 +131,7 @@ One of the most common transition types uses CSS transitions. Here's an example:
 </div>
 ```
 
-``` js
+```js
 new Vue({
   el: '#example-1',
   data: {
@@ -136,7 +140,7 @@ new Vue({
 })
 ```
 
-``` css
+```css
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
 .slide-fade-enter-active {
@@ -153,14 +157,15 @@ new Vue({
 ```
 
 {% raw %}
+
 <div id="example-1" class="demo">
-  <button @click="show = !show">
-    Toggle render
-  </button>
-  <transition name="slide-fade">
-    <p v-if="show">hello</p>
-  </transition>
-</div>
+  <button @click="show = !show"> Toggle render </button> <transition name="slide-fade"> 
+  
+  <p v-if="show">
+    hello
+  </p></transition>
+</div> 
+
 <script>
 new Vue({
   el: '#example-1',
@@ -169,7 +174,8 @@ new Vue({
   }
 })
 </script>
-<style>
+
+ <style>
 .slide-fade-enter-active {
   transition: all .3s ease;
 }
@@ -181,6 +187,9 @@ new Vue({
   opacity: 0;
 }
 </style>
+
+ 
+
 {% endraw %}
 
 ### CSS Animations
@@ -189,7 +198,7 @@ CSS animations are applied in the same way as CSS transitions, the difference be
 
 Here's an example, omitting prefixed CSS rules for the sake of brevity:
 
-``` html
+```html
 <div id="example-2">
   <button @click="show = !show">Toggle show</button>
   <transition name="bounce">
@@ -198,7 +207,7 @@ Here's an example, omitting prefixed CSS rules for the sake of brevity:
 </div>
 ```
 
-``` js
+```js
 new Vue({
   el: '#example-2',
   data: {
@@ -207,7 +216,7 @@ new Vue({
 })
 ```
 
-``` css
+```css
 .bounce-enter-active {
   animation: bounce-in .5s;
 }
@@ -228,12 +237,14 @@ new Vue({
 ```
 
 {% raw %}
+
 <div id="example-2" class="demo">
-  <button @click="show = !show">Toggle show</button>
-  <transition name="bounce">
-    <p v-show="show">Look at me!</p>
-  </transition>
-</div>
+  <button @click="show = !show">Toggle show</button> <transition name="bounce"> 
+  
+  <p v-show="show">
+    Look at me!
+  </p></transition>
+</div> 
 
 <style>
   .bounce-enter-active {
@@ -273,7 +284,8 @@ new Vue({
     }
   }
 </style>
-<script>
+
+ <script>
 new Vue({
   el: '#example-2',
   data: {
@@ -281,6 +293,9 @@ new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 ### Custom Transition Classes
@@ -298,7 +313,7 @@ These will override the conventional class names. This is especially useful when
 
 Here's an example:
 
-``` html
+```html
 <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 
 <div id="example-3">
@@ -315,7 +330,7 @@ Here's an example:
 </div>
 ```
 
-``` js
+```js
 new Vue({
   el: '#example-3',
   data: {
@@ -324,20 +339,19 @@ new Vue({
 })
 ```
 
-{% raw %}
-<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+{% raw %} 
+
+<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css" />
+
+
 <div id="example-3" class="demo">
-  <button @click="show = !show">
-    Toggle render
-  </button>
-  <transition
-    name="custom-classes-transition"
-    enter-active-class="animated tada"
-    leave-active-class="animated bounceOutRight"
-  >
-    <p v-if="show">hello</p>
-  </transition>
-</div>
+  <button @click="show = !show"> Toggle render </button> <transition name="custom-classes-transition" enter-active-class="animated tada" leave-active-class="animated bounceOutRight" > 
+  
+  <p v-if="show">
+    hello
+  </p></transition>
+</div> 
+
 <script>
 new Vue({
   el: '#example-3',
@@ -346,6 +360,9 @@ new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 ### Using Transitions and Animations Together
@@ -362,13 +379,13 @@ In most cases, Vue can automatically figure out when the transition has finished
 
 In such cases you can specify an explicit transition duration (in milliseconds) using the `duration` prop on the `<transition>` component:
 
-``` html
+```html
 <transition :duration="1000">...</transition>
 ```
 
 You can also specify separate values for enter and leave durations:
 
-``` html
+```html
 <transition :duration="{ enter: 500, leave: 800 }">...</transition>
 ```
 
@@ -376,7 +393,7 @@ You can also specify separate values for enter and leave durations:
 
 You can also define JavaScript hooks in attributes:
 
-``` html
+```html
 <transition
   v-on:before-enter="beforeEnter"
   v-on:enter="enter"
@@ -392,7 +409,7 @@ You can also define JavaScript hooks in attributes:
 </transition>
 ```
 
-``` js
+```js
 // ...
 methods: {
   // --------
@@ -440,13 +457,17 @@ methods: {
 
 These hooks can be used in combination with CSS transitions/animations or on their own.
 
-<p class="tip">When using JavaScript-only transitions, **the `done` callbacks are required for the `enter` and `leave` hooks**. Otherwise, they will be called synchronously and the transition will finish immediately.</p>
+<p class="tip">
+  When using JavaScript-only transitions, **the `done` callbacks are required for the `enter` and `leave` hooks**. Otherwise, they will be called synchronously and the transition will finish immediately.
+</p>
 
-<p class="tip">It's also a good idea to explicitly add `v-bind:css="false"` for JavaScript-only transitions so that Vue can skip the CSS detection. This also prevents CSS rules from accidentally interfering with the transition.</p>
+<p class="tip">
+  It's also a good idea to explicitly add `v-bind:css="false"` for JavaScript-only transitions so that Vue can skip the CSS detection. This also prevents CSS rules from accidentally interfering with the transition.
+</p>
 
 Now let's dive into an example. Here's a JavaScript transition using Velocity.js:
 
-``` html
+```html
 <!--
 Velocity works very much like jQuery.animate and is
 a great option for JavaScript animations
@@ -470,7 +491,7 @@ a great option for JavaScript animations
 </div>
 ```
 
-``` js
+```js
 new Vue({
   el: '#example-4',
   data: {
@@ -499,22 +520,18 @@ new Vue({
 ```
 
 {% raw %}
+
 <div id="example-4" class="demo">
-  <button @click="show = !show">
-    Toggle
-  </button>
-  <transition
-    v-on:before-enter="beforeEnter"
-    v-on:enter="enter"
-    v-on:leave="leave"
-  >
-    <p v-if="show">
-      Demo
-    </p>
-  </transition>
-</div>
+  <button @click="show = !show"> Toggle </button> <transition v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave" > 
+  
+  <p v-if="show">
+    Demo
+  </p></transition>
+</div> 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
-<script>
+
+ <script>
 new Vue({
   el: '#example-4',
   data: {
@@ -542,13 +559,16 @@ new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 ## Transitions on Initial Render
 
 If you also want to apply a transition on the initial render of a node, you can add the `appear` attribute:
 
-``` html
+```html
 <transition appear>
   <!-- ... -->
 </transition>
@@ -556,7 +576,7 @@ If you also want to apply a transition on the initial render of a node, you can 
 
 By default, this will use the transitions specified for entering and leaving. If you'd like however, you can also specify custom CSS classes:
 
-``` html
+```html
 <transition
   appear
   appear-class="custom-appear-class"
@@ -569,7 +589,7 @@ By default, this will use the transitions specified for entering and leaving. If
 
 and custom JavaScript hooks:
 
-``` html
+```html
 <transition
   appear
   v-on:before-appear="customBeforeAppearHook"
@@ -585,7 +605,7 @@ and custom JavaScript hooks:
 
 We discuss [transitioning between components](#Transitioning-Between-Components) later, but you can also transition between raw elements using `v-if`/`v-else`. One of the most common two-element transitions is between a list container and a message describing an empty list:
 
-``` html
+```html
 <transition>
   <table v-if="items.length > 0">
     <!-- ... -->
@@ -596,11 +616,13 @@ We discuss [transitioning between components](#Transitioning-Between-Components)
 
 This works well, but there's one caveat to be aware of:
 
-<p class="tip">When toggling between elements that have **the same tag name**, you must tell Vue that they are distinct elements by giving them unique `key` attributes. Otherwise, Vue's compiler will only replace the content of the element for efficiency. Even when technically unnecessary though, **it's considered good practice to always key multiple items within a `<transition>` component.**</p>
+<p class="tip">
+  When toggling between elements that have **the same tag name**, you must tell Vue that they are distinct elements by giving them unique `key` attributes. Otherwise, Vue's compiler will only replace the content of the element for efficiency. Even when technically unnecessary though, **it's considered good practice to always key multiple items within a `<transition>` component.**
+</p>
 
 For example:
 
-``` html
+```html
 <transition>
   <button v-if="isEditing" key="save">
     Save
@@ -613,7 +635,7 @@ For example:
 
 In these cases, you can also use the `key` attribute to transition between different states of the same element. Instead of using `v-if` and `v-else`, the above example could be rewritten as:
 
-``` html
+```html
 <transition>
   <button v-bind:key="isEditing">
     {{ isEditing ? 'Save' : 'Edit' }}
@@ -623,7 +645,7 @@ In these cases, you can also use the `key` attribute to transition between diffe
 
 It's actually possible to transition between any number of elements, either by using multiple `v-if`s or binding a single element to a dynamic property. For example:
 
-``` html
+```html
 <transition>
   <button v-if="docState === 'saved'" key="saved">
     Edit
@@ -639,7 +661,7 @@ It's actually possible to transition between any number of elements, either by u
 
 Which could also be written as:
 
-``` html
+```html
 <transition>
   <button v-bind:key="docState">
     {{ buttonMessage }}
@@ -647,7 +669,7 @@ Which could also be written as:
 </transition>
 ```
 
-``` js
+```js
 // ...
 computed: {
   buttonMessage: function () {
@@ -665,16 +687,11 @@ computed: {
 There's still one problem though. Try clicking the button below:
 
 {% raw %}
+
 <div id="no-mode-demo" class="demo">
-  <transition name="no-mode-fade">
-    <button v-if="on" key="on" @click="on = false">
-      on
-    </button>
-    <button v-else key="off" @click="on = true">
-      off
-    </button>
-  </transition>
-</div>
+  <transition name="no-mode-fade"> <button v-if="on" key="on" @click="on = false"> on </button> <button v-else key="off" @click="on = true"> off </button> </transition>
+</div> 
+
 <script>
 new Vue({
   el: '#no-mode-demo',
@@ -683,7 +700,8 @@ new Vue({
   }
 })
 </script>
-<style>
+
+ <style>
 .no-mode-fade-enter-active, .no-mode-fade-leave-active {
   transition: opacity .5s
 }
@@ -691,6 +709,9 @@ new Vue({
   opacity: 0
 }
 </style>
+
+ 
+
 {% endraw %}
 
 As it's transitioning between the "on" button and the "off" button, both buttons are rendered - one transitioning out while the other transitions in. This is the default behavior of `<transition>` - entering and leaving happens simultaneously.
@@ -698,18 +719,13 @@ As it's transitioning between the "on" button and the "off" button, both buttons
 Sometimes this works great, like when transitioning items are absolutely positioned on top of each other:
 
 {% raw %}
+
 <div id="no-mode-absolute-demo" class="demo">
   <div class="no-mode-absolute-demo-wrapper">
-    <transition name="no-mode-absolute-fade">
-      <button v-if="on" key="on" @click="on = false">
-        on
-      </button>
-      <button v-else key="off" @click="on = true">
-        off
-      </button>
-    </transition>
+    <transition name="no-mode-absolute-fade"> <button v-if="on" key="on" @click="on = false"> on </button> <button v-else key="off" @click="on = true"> off </button> </transition>
   </div>
-</div>
+</div> 
+
 <script>
 new Vue({
   el: '#no-mode-absolute-demo',
@@ -718,7 +734,8 @@ new Vue({
   }
 })
 </script>
-<style>
+
+ <style>
 .no-mode-absolute-demo-wrapper {
   position: relative;
   height: 18px;
@@ -733,23 +750,21 @@ new Vue({
   opacity: 0;
 }
 </style>
+
+ 
+
 {% endraw %}
 
 And then maybe also translated so that they look like slide transitions:
 
 {% raw %}
+
 <div id="no-mode-translate-demo" class="demo">
   <div class="no-mode-translate-demo-wrapper">
-    <transition name="no-mode-translate-fade">
-      <button v-if="on" key="on" @click="on = false">
-        on
-      </button>
-      <button v-else key="off" @click="on = true">
-        off
-      </button>
-    </transition>
+    <transition name="no-mode-translate-fade"> <button v-if="on" key="on" @click="on = false"> on </button> <button v-else key="off" @click="on = true"> off </button> </transition>
   </div>
-</div>
+</div> 
+
 <script>
 new Vue({
   el: '#no-mode-translate-demo',
@@ -758,7 +773,8 @@ new Vue({
   }
 })
 </script>
-<style>
+
+ <style>
 .no-mode-translate-demo-wrapper {
   position: relative;
   height: 18px;
@@ -779,6 +795,9 @@ new Vue({
   transform: translateX(-31px);
 }
 </style>
+
+ 
+
 {% endraw %}
 
 Simultaneous entering and leaving transitions aren't always desirable though, so Vue offers some alternative **transition modes**:
@@ -789,23 +808,18 @@ Simultaneous entering and leaving transitions aren't always desirable though, so
 
 Now let's update the transition for our on/off buttons with `out-in`:
 
-``` html
+```html
 <transition name="fade" mode="out-in">
   <!-- ... the buttons ... -->
 </transition>
 ```
 
 {% raw %}
+
 <div id="with-mode-demo" class="demo">
-  <transition name="with-mode-fade" mode="out-in">
-    <button v-if="on" key="on" @click="on = false">
-      on
-    </button>
-    <button v-else key="off" @click="on = true">
-      off
-    </button>
-  </transition>
-</div>
+  <transition name="with-mode-fade" mode="out-in"> <button v-if="on" key="on" @click="on = false"> on </button> <button v-else key="off" @click="on = true"> off </button> </transition>
+</div> 
+
 <script>
 new Vue({
   el: '#with-mode-demo',
@@ -814,7 +828,8 @@ new Vue({
   }
 })
 </script>
-<style>
+
+ <style>
 .with-mode-fade-enter-active, .with-mode-fade-leave-active {
   transition: opacity .5s
 }
@@ -822,6 +837,9 @@ new Vue({
   opacity: 0
 }
 </style>
+
+ 
+
 {% endraw %}
 
 With one attribute addition, we've fixed that original transition without having to add any special styling.
@@ -829,18 +847,13 @@ With one attribute addition, we've fixed that original transition without having
 The `in-out` mode isn't used as often, but can sometimes be useful for a slightly different transition effect. Let's try combining it with the slide-fade transition we worked on earlier:
 
 {% raw %}
+
 <div id="in-out-translate-demo" class="demo">
   <div class="in-out-translate-demo-wrapper">
-    <transition name="in-out-translate-fade" mode="in-out">
-      <button v-if="on" key="on" @click="on = false">
-        on
-      </button>
-      <button v-else key="off" @click="on = true">
-        off
-      </button>
-    </transition>
+    <transition name="in-out-translate-fade" mode="in-out"> <button v-if="on" key="on" @click="on = false"> on </button> <button v-else key="off" @click="on = true"> off </button> </transition>
   </div>
-</div>
+</div> 
+
 <script>
 new Vue({
   el: '#in-out-translate-demo',
@@ -849,7 +862,8 @@ new Vue({
   }
 })
 </script>
-<style>
+
+ <style>
 .in-out-translate-demo-wrapper {
   position: relative;
   height: 18px;
@@ -870,6 +884,9 @@ new Vue({
   transform: translateX(-31px);
 }
 </style>
+
+ 
+
 {% endraw %}
 
 Pretty cool, right?
@@ -878,13 +895,13 @@ Pretty cool, right?
 
 Transitioning between components is even simpler - we don't even need the `key` attribute. Instead, we wrap a [dynamic component](components.html#Dynamic-Components):
 
-``` html
+```html
 <transition name="component-fade" mode="out-in">
   <component v-bind:is="view"></component>
 </transition>
 ```
 
-``` js
+```js
 new Vue({
   el: '#transition-components-demo',
   data: {
@@ -901,7 +918,7 @@ new Vue({
 })
 ```
 
-``` css
+```css
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .3s ease;
 }
@@ -912,13 +929,11 @@ new Vue({
 ```
 
 {% raw %}
+
 <div id="transition-components-demo" class="demo">
-  <input v-model="view" type="radio" value="v-a" id="a" name="view"><label for="a">A</label>
-  <input v-model="view" type="radio" value="v-b" id="b" name="view"><label for="b">B</label>
-  <transition name="component-fade" mode="out-in">
-    <component v-bind:is="view"></component>
-  </transition>
-</div>
+  <input v-model="view" type="radio" value="v-a" id="a" name="view" /><label for="a">A</label> <input v-model="view" type="radio" value="v-b" id="b" name="view" /><label for="b">B</label> <transition name="component-fade" mode="out-in"> <component v-bind:is="view"></component> </transition>
+</div> 
+
 <style>
 .component-fade-enter-active, .component-fade-leave-active {
   transition: opacity .3s ease;
@@ -927,7 +942,8 @@ new Vue({
   opacity: 0;
 }
 </style>
-<script>
+
+ <script>
 new Vue({
   el: '#transition-components-demo',
   data: {
@@ -943,6 +959,9 @@ new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 ## List Transitions
@@ -961,7 +980,7 @@ So what about for when we have a whole list of items we want to render simultane
 
 Now let's dive into an example, transitioning entering and leaving using the same CSS classes we've used previously:
 
-``` html
+```html
 <div id="list-demo">
   <button v-on:click="add">Add</button>
   <button v-on:click="remove">Remove</button>
@@ -973,7 +992,7 @@ Now let's dive into an example, transitioning entering and leaving using the sam
 </div>
 ```
 
-``` js
+```js
 new Vue({
   el: '#list-demo',
   data: {
@@ -994,7 +1013,7 @@ new Vue({
 })
 ```
 
-``` css
+```css
 .list-item {
   display: inline-block;
   margin-right: 10px;
@@ -1009,15 +1028,11 @@ new Vue({
 ```
 
 {% raw %}
+
 <div id="list-demo" class="demo">
-  <button v-on:click="add">Add</button>
-  <button v-on:click="remove">Remove</button>
-  <transition-group name="list" tag="p">
-    <span v-for="item in items" :key="item" class="list-item">
-      {{ item }}
-    </span>
-  </transition-group>
-</div>
+  <button v-on:click="add">Add</button> <button v-on:click="remove">Remove</button> <transition-group name="list" tag="p"> <span v-for="item in items" :key="item" class="list-item"> {{ item }} </span> </transition-group>
+</div> 
+
 <script>
 new Vue({
   el: '#list-demo',
@@ -1038,7 +1053,8 @@ new Vue({
   }
 })
 </script>
-<style>
+
+ <style>
 .list-item {
   display: inline-block;
   margin-right: 10px;
@@ -1051,6 +1067,9 @@ new Vue({
   transform: translateY(30px);
 }
 </style>
+
+ 
+
 {% endraw %}
 
 There's one problem with this example. When you add or remove an item, the ones around it instantly snap into their new place instead of smoothly transitioning. We'll fix that later.
@@ -1061,7 +1080,7 @@ The `<transition-group>` component has another trick up its sleeve. It can not o
 
 This class is mostly useful for specifying the transition timing and easing curve, as you'll see below:
 
-``` html
+```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 
 <div id="flip-list-demo" class="demo">
@@ -1074,7 +1093,7 @@ This class is mostly useful for specifying the transition timing and easing curv
 </div>
 ```
 
-``` js
+```js
 new Vue({
   el: '#flip-list-demo',
   data: {
@@ -1088,22 +1107,23 @@ new Vue({
 })
 ```
 
-``` css
+```css
 .flip-list-move {
   transition: transform 1s;
 }
 ```
 
-{% raw %}
+{% raw %} 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+
 <div id="flip-list-demo" class="demo">
-  <button v-on:click="shuffle">Shuffle</button>
-  <transition-group name="flip-list" tag="ul">
-    <li v-for="item in items" :key="item">
-      {{ item }}
-    </li>
-  </transition-group>
-</div>
+  <button v-on:click="shuffle">Shuffle</button> <transition-group name="flip-list" tag="ul"> 
+  
+  <li v-for="item in items" :key="item">
+    {{ item }}
+  </li></transition-group>
+</div> 
+
 <script>
 new Vue({
   el: '#flip-list-demo',
@@ -1117,18 +1137,22 @@ new Vue({
   }
 })
 </script>
-<style>
+
+ <style>
 .flip-list-move {
   transition: transform 1s;
 }
 </style>
+
+ 
+
 {% endraw %}
 
 This might seem like magic, but under the hood, Vue is using an animation technique called [FLIP](https://aerotwist.com/blog/flip-your-animations/) to smoothly transition elements from their old position to their new position using transforms.
 
 We can combine this technique with our previous implementation to animate every possible change to our list!
 
-``` html
+```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
 
 <div id="list-complete-demo" class="demo">
@@ -1147,7 +1171,7 @@ We can combine this technique with our previous implementation to animate every 
 </div>
 ```
 
-``` js
+```js
 new Vue({
   el: '#list-complete-demo',
   data: {
@@ -1171,7 +1195,7 @@ new Vue({
 })
 ```
 
-``` css
+```css
 .list-complete-item {
   transition: all 1s;
   display: inline-block;
@@ -1187,18 +1211,13 @@ new Vue({
 }
 ```
 
-{% raw %}
+{% raw %} 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+
 <div id="list-complete-demo" class="demo">
-  <button v-on:click="shuffle">Shuffle</button>
-  <button v-on:click="add">Add</button>
-  <button v-on:click="remove">Remove</button>
-  <transition-group name="list-complete" tag="p">
-    <span v-for="item in items" :key="item" class="list-complete-item">
-      {{ item }}
-    </span>
-  </transition-group>
-</div>
+  <button v-on:click="shuffle">Shuffle</button> <button v-on:click="add">Add</button> <button v-on:click="remove">Remove</button> <transition-group name="list-complete" tag="p"> <span v-for="item in items" :key="item" class="list-complete-item"> {{ item }} </span> </transition-group>
+</div> 
+
 <script>
 new Vue({
   el: '#list-complete-demo',
@@ -1222,7 +1241,8 @@ new Vue({
   }
 })
 </script>
-<style>
+
+ <style>
 .list-complete-item {
   transition: all 1s;
   display: inline-block;
@@ -1236,25 +1256,31 @@ new Vue({
   position: absolute;
 }
 </style>
+
+ 
+
 {% endraw %}
 
-<p class="tip">One important note is that these FLIP transitions do not work with elements set to `display: inline`. As an alternative, you can use `display: inline-block` or place elements in a flex context.</p>
+<p class="tip">
+  One important note is that these FLIP transitions do not work with elements set to `display: inline`. As an alternative, you can use `display: inline-block` or place elements in a flex context.
+</p>
 
 These FLIP animations are also not limited to a single axis. Items in a multidimensional grid can be [transitioned too](https://jsfiddle.net/chrisvfritz/sLrhk1bc/):
 
 {% raw %}
+
 <div id="sudoku-demo" class="demo">
-  <strong>Lazy Sudoku</strong>
-  <p>Keep hitting the shuffle button until you win.</p>
-  <button @click="shuffle">
-    Shuffle
-  </button>
-  <transition-group name="cell" tag="div" class="sudoku-container">
-    <div v-for="cell in cells" :key="cell.id" class="cell">
-      {{ cell.number }}
-    </div>
-  </transition-group>
-</div>
+  <strong>Lazy Sudoku</strong> 
+  
+  <p>
+    Keep hitting the shuffle button until you win.
+  </p><button @click="shuffle"> Shuffle </button> <transition-group name="cell" tag="div" class="sudoku-container"> 
+  
+  <div v-for="cell in cells" :key="cell.id" class="cell">
+    {{ cell.number }}
+  </div></transition-group>
+</div> 
+
 <script>
 new Vue({
   el: '#sudoku-demo',
@@ -1274,7 +1300,8 @@ new Vue({
   }
 })
 </script>
-<style>
+
+ <style>
 .sudoku-container {
   display: flex;
   flex-wrap: wrap;
@@ -1301,13 +1328,16 @@ new Vue({
   transition: transform 1s;
 }
 </style>
+
+ 
+
 {% endraw %}
 
 ### Staggering List Transitions
 
 By communicating with JavaScript transitions through data attributes, it's also possible to stagger transitions in a list:
 
-``` html
+```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
 <div id="staggered-list-demo">
@@ -1329,7 +1359,7 @@ By communicating with JavaScript transitions through data attributes, it's also 
 </div>
 ```
 
-``` js
+```js
 new Vue({
   el: '#staggered-list-demo',
   data: {
@@ -1379,25 +1409,21 @@ new Vue({
 })
 ```
 
-{% raw %}
+{% raw %} 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+
 <div id="example-5" class="demo">
-  <input v-model="query">
-  <transition-group
-    name="staggered-fade"
-    tag="ul"
-    v-bind:css="false"
-    v-on:before-enter="beforeEnter"
-    v-on:enter="enter"
-    v-on:leave="leave"
-  >
-    <li
+  <input v-model="query" /> <transition-group name="staggered-fade" tag="ul" v-bind:css="false" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave" > 
+  
+  <li
       v-for="(item, index) in computedList"
       v-bind:key="item.msg"
       v-bind:data-index="index"
-    >{{ item.msg }}</li>
-  </transition-group>
-</div>
+    >
+    {{ item.msg }}
+  </li></transition-group>
+</div> 
+
 <script>
 new Vue({
   el: '#example-5',
@@ -1447,6 +1473,9 @@ new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 ## Reusable Transitions
@@ -1455,7 +1484,7 @@ Transitions can be reused through Vue's component system. To create a reusable t
 
 Here's an example using a template component:
 
-``` js
+```js
 Vue.component('my-special-transition', {
   template: '\
     <transition\
@@ -1480,7 +1509,7 @@ Vue.component('my-special-transition', {
 
 And functional components are especially well-suited to this task:
 
-``` js
+```js
 Vue.component('my-special-transition', {
   functional: true,
   render: function (createElement, context) {
@@ -1517,7 +1546,7 @@ This can be useful when you've defined CSS transitions/animations using Vue's tr
 
 Really though, any transition attribute can be dynamically bound. And it's not only attributes. Since event hooks are methods, they have access to any data in the context. That means depending on the state of your component, your JavaScript transitions can behave differently.
 
-``` html
+```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
 
 <div id="dynamic-fade-demo" class="demo">
@@ -1542,7 +1571,7 @@ Really though, any transition attribute can be dynamically bound. And it's not o
 </div>
 ```
 
-``` js
+```js
 new Vue({
   el: '#dynamic-fade-demo',
   data: {
@@ -1589,28 +1618,25 @@ new Vue({
 })
 ```
 
-{% raw %}
+{% raw %} 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+
 <div id="dynamic-fade-demo" class="demo">
-  Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration">
-  Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration">
-  <transition
-    v-bind:css="false"
-    v-on:before-enter="beforeEnter"
-    v-on:enter="enter"
-    v-on:leave="leave"
-  >
-    <p v-if="show">hello</p>
-  </transition>
+  Fade In: <input type="range" v-model="fadeInDuration" min="0" v-bind:max="maxFadeDuration" /> Fade Out: <input type="range" v-model="fadeOutDuration" min="0" v-bind:max="maxFadeDuration" /> <transition v-bind:css="false" v-on:before-enter="beforeEnter" v-on:enter="enter" v-on:leave="leave" > 
+  
+  <p v-if="show">
+    hello
+  </p></transition> 
+  
   <button
     v-if="stop"
     v-on:click="stop = false; show = false"
-  >Start animating</button>
-  <button
+  >Start animating</button> <button
     v-else
-    v-on:click="stop = true"
+ v-on:click="stop = true"
   >Stop it!</button>
-</div>
+</div> 
+
 <script>
 new Vue({
   el: '#dynamic-fade-demo',
@@ -1657,7 +1683,9 @@ new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 Finally, the ultimate way of creating dynamic transitions is through components that accept props to change the nature of the transition(s) to be used. It may sound cheesy, but the only limit really is your imagination.
-
