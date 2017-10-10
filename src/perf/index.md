@@ -1,7 +1,6 @@
 ---
 title: Performance Comparisons
 ---
-
 ## TodoMVC Benchmark
 
 > *Last Updated: 2014-10-12*
