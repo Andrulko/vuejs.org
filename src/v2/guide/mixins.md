@@ -3,14 +3,13 @@ title: Mixins
 type: guide
 order: 301
 ---
-
 ## Basics
 
 Mixins are a flexible way to distribute reusable functionalities for Vue components. A mixin object can contain any component options. When a component uses a mixin, all options in the mixin will be "mixed" into the component's own options.
 
 Example:
 
-``` js
+```js
 // define a mixin object
 var myMixin = {
   created: function () {
@@ -35,7 +34,7 @@ var component = new Component() // => "hello from mixin!"
 
 When a mixin and the component itself contain overlapping options, they will be "merged" using appropriate strategies. For example, hook functions with the same name are merged into an array so that all of them will be called. In addition, mixin hooks will be called **before** the component's own hooks:
 
-``` js
+```js
 var mixin = {
   created: function () {
     console.log('mixin hook called')
@@ -55,7 +54,7 @@ new Vue({
 
 Options that expect object values, for example `methods`, `components` and `directives`, will be merged into the same object. The component's options will take priority when there are conflicting keys in these objects:
 
-``` js
+```js
 var mixin = {
   methods: {
     foo: function () {
@@ -90,7 +89,7 @@ Note that the same merge strategies are used in `Vue.extend()`.
 
 You can also apply a mixin globally. Use with caution! Once you apply a mixin globally, it will affect **every** Vue instance created afterwards. When used properly, this can be used to inject processing logic for custom options:
 
-``` js
+```js
 // inject a handler for `myOption` custom option
 Vue.mixin({
   created: function () {
@@ -113,7 +112,7 @@ new Vue({
 
 When custom options are merged, they use the default strategy which overwrites the existing value. If you want a custom option to be merged using custom logic, you need to attach a function to `Vue.config.optionMergeStrategies`:
 
-``` js
+```js
 Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
   // return mergedVal
 }
@@ -121,14 +120,14 @@ Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
 
 For most object-based options, you can use the same strategy used by `methods`:
 
-``` js
+```js
 var strategies = Vue.config.optionMergeStrategies
 strategies.myOption = strategies.methods
 ```
 
 A more advanced example can be found on [Vuex](https://github.com/vuejs/vuex)'s 1.x merging strategy:
 
-``` js
+```js
 const merge = Vue.config.optionMergeStrategies.computed
 Vue.config.optionMergeStrategies.vuex = function (toVal, fromVal) {
   if (!toVal) return fromVal
