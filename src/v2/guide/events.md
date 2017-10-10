@@ -3,20 +3,20 @@ title: Event Handling
 type: guide
 order: 9
 ---
-
 ## Listening to Events
 
 We can use the `v-on` directive to listen to DOM events and run some JavaScript when they're triggered.
 
 For example:
 
-``` html
+```html
 <div id="example-1">
   <button v-on:click="counter += 1">Add 1</button>
   <p>The button above has been clicked {{ counter }} times.</p>
 </div>
 ```
-``` js
+
+```js
 var example1 = new Vue({
   el: '#example-1',
   data: {
@@ -28,10 +28,15 @@ var example1 = new Vue({
 Result:
 
 {% raw %}
+
 <div id="example-1" class="demo">
-  <button v-on:click="counter += 1">Add 1</button>
-  <p>The button above has been clicked {{ counter }} times.</p>
-</div>
+  <button v-on:click="counter += 1">Add 1</button> 
+  
+  <p>
+    The button above has been clicked {{ counter }} times.
+  </p>
+</div> 
+
 <script>
 var example1 = new Vue({
   el: '#example-1',
@@ -40,6 +45,9 @@ var example1 = new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 ## Method Event Handlers
@@ -48,14 +56,14 @@ The logic for many event handlers will be more complex though, so keeping your J
 
 For example:
 
-``` html
+```html
 <div id="example-2">
   <!-- `greet` is the name of a method defined below -->
   <button v-on:click="greet">Greet</button>
 </div>
 ```
 
-``` js
+```js
 var example2 = new Vue({
   el: '#example-2',
   data: {
@@ -81,9 +89,11 @@ example2.greet() // => 'Hello Vue.js!'
 Result:
 
 {% raw %}
+
 <div id="example-2" class="demo">
   <button v-on:click="greet">Greet</button>
-</div>
+</div> 
+
 <script>
 var example2 = new Vue({
   el: '#example-2',
@@ -100,19 +110,23 @@ var example2 = new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 ## Methods in Inline Handlers
 
 Instead of binding directly to a method name, we can also use methods in an inline JavaScript statement:
 
-``` html
+```html
 <div id="example-3">
   <button v-on:click="say('hi')">Say hi</button>
   <button v-on:click="say('what')">Say what</button>
 </div>
 ```
-``` js
+
+```js
 new Vue({
   el: '#example-3',
   methods: {
@@ -123,12 +137,12 @@ new Vue({
 })
 ```
 
-Result:
-{% raw %}
+Result: {% raw %}
+
 <div id="example-3" class="demo">
-  <button v-on:click="say('hi')">Say hi</button>
-  <button v-on:click="say('what')">Say what</button>
-</div>
+  <button v-on:click="say('hi')">Say hi</button> <button v-on:click="say('what')">Say what</button>
+</div> 
+
 <script>
 new Vue({
   el: '#example-3',
@@ -139,17 +153,20 @@ new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 Sometimes we also need to access the original DOM event in an inline statement handler. You can pass it into a method using the special `$event` variable:
 
-``` html
+```html
 <button v-on:click="warn('Form cannot be submitted yet.', $event)">
   Submit
 </button>
 ```
 
-``` js
+```js
 // ...
 methods: {
   warn: function (message, event) {
@@ -172,7 +189,7 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 - `.self`
 - `.once`
 
-``` html
+```html
 <!-- the click event's propagation will be stopped -->
 <a v-on:click.stop="doThis"></a>
 
@@ -194,11 +211,13 @@ To address this problem, Vue provides **event modifiers** for `v-on`. Recall tha
 <div v-on:click.self="doThat">...</div>
 ```
 
-<p class="tip">Order matters when using modifiers because the relevant code is generated in the same order. Therefore using `@click.prevent.self` will prevent **all clicks** while `@click.self.prevent` will only prevent clicks on the element itself.</p>
+<p class="tip">
+  Order matters when using modifiers because the relevant code is generated in the same order. Therefore using `@click.prevent.self` will prevent **all clicks** while `@click.self.prevent` will only prevent clicks on the element itself.
+</p>
 
 > New in 2.1.4+
 
-``` html
+```html
 <!-- the click event will be triggered at most once -->
 <a v-on:click.once="doThis"></a>
 ```
@@ -209,14 +228,14 @@ Unlike the other modifiers, which are exclusive to native DOM events, the `.once
 
 When listening for keyboard events, we often need to check for common key codes. Vue also allows adding key modifiers for `v-on` when listening for key events:
 
-``` html
+```html
 <!-- only call vm.submit() when the keyCode is 13 -->
 <input v-on:keyup.13="submit">
 ```
 
 Remembering all the keyCodes is a hassle, so Vue provides aliases for the most commonly used keys:
 
-``` html
+```html
 <!-- same as above -->
 <input v-on:keyup.enter="submit">
 
@@ -238,7 +257,7 @@ Here's the full list of key modifier aliases:
 
 You can also [define custom key modifier aliases](../api/#keyCodes) via the global `config.keyCodes` object:
 
-``` js
+```js
 // enable v-on:keyup.f1
 Vue.config.keyCodes.f1 = 112
 ```
@@ -266,7 +285,9 @@ For example:
 <div @click.ctrl="doSomething">Do something</div>
 ```
 
-<p class="tip">Note that modifier keys are different from regular keys and when used with `keyup` events, they have to be pressed when the event is emitted. In other words, `keyup.ctrl` will only trigger if you release a key while holding down `ctrl`. It won't trigger if you release the `ctrl` key alone.</p>
+<p class="tip">
+  Note that modifier keys are different from regular keys and when used with `keyup` events, they have to be pressed when the event is emitted. In other words, `keyup.ctrl` will only trigger if you release a key while holding down `ctrl`. It won't trigger if you release the `ctrl` key alone.
+</p>
 
 ### Mouse Button Modifiers
 
