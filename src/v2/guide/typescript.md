@@ -3,7 +3,6 @@ title: TypeScript Support
 type: guide
 order: 404
 ---
-
 ## Important 2.2.0+ Change Notice for TS + webpack 2 users
 
 In Vue 2.2.0+ we introduced dist files exposed as ES modules, which will be used by default by webpack 2. Unfortunately, this introduced an unintentional breaking change because with TypeScript + webpack 2, `import Vue = require('vue')` will now return a synthetic ES module object instead of Vue itself.
@@ -18,7 +17,7 @@ Since these are [published on NPM](https://cdn.jsdelivr.net/npm/vue/types/), and
 
 ## Recommended Configuration
 
-``` js
+```js
 // tsconfig.json
 {
   "compilerOptions": {
@@ -35,13 +34,13 @@ Since these are [published on NPM](https://cdn.jsdelivr.net/npm/vue/types/), and
 
 Note the `allowSyntheticDefaultImports` option allows us to use the following:
 
-``` js
+```js
 import Vue from 'vue'
 ```
 
 instead of:
 
-``` js
+```js
 import Vue = require('vue')
 ```
 
@@ -49,7 +48,7 @@ The former (ES module syntax) is recommended because it is consistent with recom
 
 In addition, if you are using TypeScript with webpack 2, the following is also recommended:
 
-``` js
+```js
 {
   "compilerOptions": {
     // ... other options omitted
@@ -67,7 +66,7 @@ See [TypeScript compiler options docs](https://www.typescriptlang.org/docs/handb
 
 Vue's type definition exports many useful [type declarations](https://github.com/vuejs/vue/blob/dev/types/index.d.ts). For example, to annotate an exported component options object (e.g. in a `.vue` file):
 
-``` ts
+```ts
 import Vue, { ComponentOptions } from 'vue'
 
 export default {
@@ -80,7 +79,7 @@ export default {
 
 Vue component options can easily be annotated with types:
 
-``` ts
+```ts
 import Vue, { ComponentOptions }  from 'vue'
 
 // Declare the component's type
@@ -110,13 +109,13 @@ export default {
 
 Unfortunately, there are a few limitations here:
 
-- __TypeScript can't infer all types from Vue's API.__ For example, it doesn't know that the `message` property returned in our `data` function will be added to the `MyComponent` instance. That means if we assigned a number or boolean value to `message`, linters and compilers wouldn't be able to raise an error, complaining that it should be a string.
+- **TypeScript can't infer all types from Vue's API.** For example, it doesn't know that the `message` property returned in our `data` function will be added to the `MyComponent` instance. That means if we assigned a number or boolean value to `message`, linters and compilers wouldn't be able to raise an error, complaining that it should be a string.
 
-- Because of the previous limitation, __annotating types like this can be verbose__. The only reason we have to manually declare `message` as a string is because TypeScript can't infer the type in this case.
+- Because of the previous limitation, **annotating types like this can be verbose**. The only reason we have to manually declare `message` as a string is because TypeScript can't infer the type in this case.
 
 Fortunately, [vue-class-component](https://github.com/vuejs/vue-class-component) can solve both of these problems. It's an official companion library that allows you to declare components as native JavaScript classes, with a `@Component` decorator. As an example, let's rewrite the above component:
 
-``` ts
+```ts
 import Vue from 'vue'
 import Component from 'vue-class-component'
 
@@ -144,7 +143,7 @@ Plugins may add to Vue's global/instance properties and component options. In th
 
 For example, to declare an instance property `$myProperty` with type `string`:
 
-``` ts
+```ts
 // 1. Make sure to import 'vue' before declaring augmented types
 import Vue from 'vue'
 
