@@ -1,8 +1,7 @@
 ---
 title: Vue.js 0.12 released!
-date: 2015-06-11 17:37:30
+date: '2015-06-11 17:37:30'
 ---
-
 I'm really excited to announce that [Vue.js 0.12: Dragon Ball](https://github.com/yyx990803/vue/releases/tag/0.12.0) is finally here! Thanks to everyone who tried out the beta/rc versions and provided feedback / bug reports along the way.
 
 There's a lot to cover in this release, and we will talk about a few highlights below. However, it is still recommended to carefully go through the [Full Release Note](https://github.com/yyx990803/vue/releases/tag/0.12.0) and updated docs if you are upgrading from 0.11. You can report bugs on GitHub, send questions to [vuejs/Discussion](https://github.com/vuejs/Discussion/issues), or join us in the [Gitter chat channel](https://gitter.im/yyx990803/vue).
@@ -17,7 +16,7 @@ In addition, it should be noted that the component system is a first-class conce
 
 As a result, `v-component` and `v-with` have been deprecated in 0.12. `paramAttributes` has also been renamed to `props`, which is shorter and cleaner. From now on, most Vue.js components will look like this:
 
-``` html
+```html
 <my-component prop="{{parentData}}"></my-component>
 ```
 
@@ -31,14 +30,14 @@ In 0.12, the filter argument syntax now follows a simple rule: if an argument is
 
 This means the usage of some existing filters will have to change:
 
-``` html
+```html
 <a v-on="keyup: onKeyUp | key 'enter'"></a>
 {{ items.length | pluralize 'item' }}
 ```
 
 But it would make custom filters that rely on dynamic values much easier to write:
 
-``` html
+```html
 {{ msg | concat otherMsg }}
 ```
 
@@ -52,7 +51,7 @@ Well, with Vue.js we can already build our applications as decoupled components.
 
 In 0.12, you can define a component as a factory function that asynchronously resolves a component definition (can be just a plain options object). Vue.js will only trigger the factory function when the component actually needs to be rendered, and will cache the result for future re-renders:
 
-``` js
+```js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
     resolve({
@@ -64,7 +63,7 @@ Vue.component('async-example', function (resolve, reject) {
 
 It is up to you to decide how to load the component from the server, e.g. `$.getScript()` or require.js; but the recommended usage is to pair it up with Webpack's [Code Splitting feature](http://webpack.github.io/docs/code-splitting.html):
 
-``` js
+```js
 Vue.component('async-webpack-example', function (resolve, reject) {
   // In Webpack AMD like syntax indicates a code split point
   require(['./my-async-component'], resolve)
