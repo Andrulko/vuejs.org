@@ -3,7 +3,6 @@ title: Plugins
 type: guide
 order: 304
 ---
-
 ## Writing a Plugin
 
 Plugins usually add global-level functionality to Vue. There is no strictly defined scope for a plugin - there are typically several types of plugins you can write:
@@ -20,7 +19,7 @@ Plugins usually add global-level functionality to Vue. There is no strictly defi
 
 A Vue.js plugin should expose an `install` method. The method will be called with the `Vue` constructor as the first argument, along with possible options:
 
-``` js
+```js
 MyPlugin.install = function (Vue, options) {
   // 1. add global method or property
   Vue.myGlobalMethod = function () {
@@ -54,14 +53,14 @@ MyPlugin.install = function (Vue, options) {
 
 Use plugins by calling the `Vue.use()` global method:
 
-``` js
+```js
 // calls `MyPlugin.install(Vue)`
 Vue.use(MyPlugin)
 ```
 
 You can optionally pass in some options:
 
-``` js
+```js
 Vue.use(MyPlugin, { someOption: true })
 ```
 
@@ -69,7 +68,7 @@ Vue.use(MyPlugin, { someOption: true })
 
 Some plugins provided by Vue.js official plugins such as `vue-router` automatically calls `Vue.use()` if `Vue` is available as a global variable. However in a module environment such as CommonJS, you always need to call `Vue.use()` explicitly:
 
-``` js
+```js
 // When using CommonJS via Browserify or Webpack
 var Vue = require('vue')
 var VueRouter = require('vue-router')
