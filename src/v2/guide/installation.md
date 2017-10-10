@@ -3,12 +3,11 @@ title: Cài đặt
 type: guide
 order: 1
 vue_version: 2.4.4
-dev_size: "262.63"
-min_size: "80.86"
-gz_size: "29.40"
-ro_gz_size: "20.70"
+dev_size: 262.63
+min_size: 80.86
+gz_size: 29.40
+ro_gz_size: 20.70
 ---
-
 ### Khả năng tương thích
 
 Do sử dụng một số tính năng ECMAScript 5 không được hỗ trợ trên IE8, Vue **không** hỗ trợ IE8 và các phiên bản thấp hơn. Tuy nhiên Vue hỗ trợ [mọi trình duyệt tương thích với ECMAScript 5](http://caniuse.com/#feat=es5).
@@ -35,7 +34,7 @@ Chỉ cần tải file thư viện về rồi sử dụng nó trong thẻ script
 
 ### CDN
 
-Nên dùng: [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue), nó sẽ trỏ tới bản mới nhất của Vue trên npm. Bạn có thể xem mã nguồn của package trên npm tại [https://cdn.jsdelivr.net/npm/vue/](https://cdn.jsdelivr.net/npm/vue/).
+Nên dùng: <https://cdn.jsdelivr.net/npm/vue>, nó sẽ trỏ tới bản mới nhất của Vue trên npm. Bạn có thể xem mã nguồn của package trên npm tại <https://cdn.jsdelivr.net/npm/vue/>.
 
 Ngoài ra, bạn cũng có thể sử dụng [unpkg](https://unpkg.com/vue) hoặc [cdnjs](https://cdnjs.cloudflare.com/ajax/libs/vue/{{vue_version}}/vue.js) (cdnjs cần nhiều thời gian để đồng bộ nên có thể nó chưa phải phiên bản mới nhất).
 
@@ -43,7 +42,7 @@ Ngoài ra, bạn cũng có thể sử dụng [unpkg](https://unpkg.com/vue) ho�
 
 Chúng tôi khuyên bạn nên sử dụng NPM khi muốn xây dựng một ứng dụng lớn với Vue. NPM hoạt động rất tốt với các module bundler (các công cụ đóng gói module) như [Webpack](https://webpack.js.org/) hoặc [Browserify](http://browserify.org/). Vue cũng cung cấp công cụ hỗ trợ để viết các [single file component](single-file-components.html).
 
-``` bash
+```bash
 # latest stable
 $ npm install vue
 ```
@@ -52,7 +51,7 @@ $ npm install vue
 
 Vue.js cung cấp một [CLI](https://github.com/vuejs/vue-cli) giúp nhanh chóng khởi tạo nền tảng (scaffolding) cho các ứng dụng một trang. Vue-CLI chuẩn bị sẵn các cài đặt phong phú cho một quy trình front-end hiện đại. Chỉ mất vài phút, bạn đã có thể bắt đầu xây dựng ứng dụng với các tính năng như hot-reload, tinh chỉnh code khi save (lint-on-save), và các bản build sẵn sàng để deploy lên production:
 
-``` bash
+```bash
 # cài đặt vue-cli
 $ npm install --global vue-cli
 # tạo một dự án mới với template "webpack"
@@ -69,12 +68,12 @@ $ npm run dev
 
 Trong thư mục [`dist/` của gói trên NPM](https://cdn.jsdelivr.net/npm/vue/dist/) bạn sẽ thấy nhiều bản build khác nhau của Vue.js. Dưới đây là các điểm khác biệt cơ bản giữa các phiên bản này:
 
-| | UMD | CommonJS | ES Module |
-| --- | --- | --- | --- |
-| **Full** | vue.js | vue.common.js | vue.esm.js |
-| **Runtime-only** | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js |
-| **Full (production)** | vue.min.js | - | - |
-| **Runtime-only (production)** | vue.runtime.min.js | - | - |
+|                               | UMD                | CommonJS              | ES Module          |
+| ----------------------------- | ------------------ | --------------------- | ------------------ |
+| **Full**                      | vue.js             | vue.common.js         | vue.esm.js         |
+| **Runtime-only**              | vue.runtime.js     | vue.runtime.common.js | vue.runtime.esm.js |
+| **Full (production)**         | vue.min.js         | -                     | -                  |
+| **Runtime-only (production)** | vue.runtime.min.js | -                     | -                  |
 
 ### Ý nghĩa
 
@@ -84,7 +83,7 @@ Trong thư mục [`dist/` của gói trên NPM](https://cdn.jsdelivr.net/npm/vue
 
 - **Runtime**: code có trách nhiệm khởi tạo đối tượng Vue, render và cập nhật virtual DOM v.v.. Cơ bản là tất cả mọi thứ ngoại trừ trình biên dịch.
 
-- **[UMD](https://github.com/umdjs/umd)**: các bản build UMD có thể được sử dụng trực tiếp trong trình duyệt thông qua thẻ `<script>`. Mặc định thì file trên CDN jsDelivr - [https://cdn.jsdelivr.net/npm/vue](https://cdn.jsdelivr.net/npm/vue) là bản runtime + Compiler UMD (`vue.js`).
+- **[UMD](https://github.com/umdjs/umd)**: các bản build UMD có thể được sử dụng trực tiếp trong trình duyệt thông qua thẻ `<script>`. Mặc định thì file trên CDN jsDelivr - <https://cdn.jsdelivr.net/npm/vue> là bản runtime + Compiler UMD (`vue.js`).
 
 - **[CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1)**: các bản build CommonJS được dành cho các bundler cũ như [browserify](http://browserify.org/) hoặc [webpack 1](https://webpack.github.io). File mặc định dành cho các bundler này (`pkg.main`) là bản chỉ có runtime CommonJS (`vue.runtime.common.js`).
 
@@ -94,7 +93,7 @@ Trong thư mục [`dist/` của gói trên NPM](https://cdn.jsdelivr.net/npm/vue
 
 Nếu bạn cần biên dịch các template ở phía client (ví dụ như truyền chuỗi vào option `template`, hoặc gắn Vue vào element và sử dụng DOM của nó làm template), bạn sẽ cần trình biên dịch có trong bản build đầy đủ (full):
 
-``` js
+```js
 // cần compiler
 new Vue({
   template: '<div>{{ hi }}</div>'
@@ -114,7 +113,7 @@ Vì bản build chỉ có runtime nhẹ hơn 30% so với bản đầy đủ, b�
 
 #### Webpack
 
-``` js
+```js
 module.exports = {
   // ...
   resolve: {
@@ -127,7 +126,7 @@ module.exports = {
 
 #### Rollup
 
-``` js
+```js
 const alias = require('rollup-plugin-alias')
 
 rollup({
@@ -144,7 +143,7 @@ rollup({
 
 Thêm vào file `package.json`:
 
-``` js
+```js
 {
   // ...
   "browser": {
@@ -165,7 +164,7 @@ Các bản build CommonJS và ES Module này cũng dựa vào giá trị `proces
 
 Sử dụng [DefinePlugin](https://webpack.js.org/plugins/define-plugin/) của Webpack:
 
-``` js
+```js
 var webpack = require('webpack')
 
 module.exports = {
@@ -185,7 +184,7 @@ module.exports = {
 
 Sử dụng plugin [rollup-plugin-replace](https://github.com/rollup/rollup-plugin-replace):
 
-``` js
+```js
 const replace = require('rollup-plugin-replace')
 
 rollup({
@@ -202,7 +201,7 @@ rollup({
 
 Sử dụng [envify](https://github.com/hughsk/envify).
 
-``` bash
+```bash
 NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m > build.js
 ```
 
@@ -216,9 +215,9 @@ Mặt khác, bản build chỉ có runtime có thể tương thích với CSP. K
 
 ## Bản build dev
 
-**Quan trọng**: các file đã được build trong thư mục `/dist` trên GitHub chỉ được tạo ra khi phát hành một phiên bản mới. Bạn sẽ phải tự build lấy nếu muốn dùng phiên bản từ mã nguồn gần nhất. 
+**Quan trọng**: các file đã được build trong thư mục `/dist` trên GitHub chỉ được tạo ra khi phát hành một phiên bản mới. Bạn sẽ phải tự build lấy nếu muốn dùng phiên bản từ mã nguồn gần nhất.
 
-``` bash
+```bash
 git clone https://github.com/vuejs/vue.git node_modules/vue
 cd node_modules/vue
 npm install
@@ -229,7 +228,7 @@ npm run build
 
 Chỉ có bản build UMD là khả dụng trong Bower.
 
-``` bash
+```bash
 # latest stable
 $ bower install vue
 ```
