@@ -1,10 +1,9 @@
 ---
 title: Vue.js 0.10 is here!
-date: 2014-03-22 19:00:13
+date: '2014-03-22 19:00:13'
 type: '{{type}}'
 yield: '{{>yield}}'
 ---
-
 Vue.js 0.10.0 (Blade Runner) has been released! This release comes with many useful additions based on the suggestions from the users, notably interpolation in literal directives, dynamic components with the new `v-view` directive, array filters, and the option to configure interpolation delimiters. Internally, the codebase has received many refactoring and improvements which makes Vue.js [even faster](http://vuejs.org/perf/).
 
 <!-- more -->
