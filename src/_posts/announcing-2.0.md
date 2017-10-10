@@ -1,8 +1,7 @@
 ---
 title: Announcing Vue.js 2.0
-date: 2016-04-27 13:33:00
+date: '2016-04-27 13:33:00'
 ---
-
 Today I am thrilled to announce the first public preview of Vue.js 2.0, which brings along many exciting improvements and new features. Let's take a peek at what's in store!
 
 <!-- more -->
