@@ -3,12 +3,11 @@ title: Computed Properties and Watchers
 type: guide
 order: 5
 ---
-
 ## Computed Properties
 
 In-template expressions are very convenient, but they are meant for simple operations. Putting too much logic in your templates can make them bloated and hard to maintain. For example:
 
-``` html
+```html
 <div id="example">
   {{ message.split('').reverse().join('') }}
 </div>
@@ -20,14 +19,14 @@ That's why for any complex logic, you should use a **computed property**.
 
 ### Basic Example
 
-``` html
+```html
 <div id="example">
   <p>Original message: "{{ message }}"</p>
   <p>Computed reversed message: "{{ reversedMessage }}"</p>
 </div>
 ```
 
-``` js
+```js
 var vm = new Vue({
   el: '#example',
   data: {
@@ -46,10 +45,17 @@ var vm = new Vue({
 Result:
 
 {% raw %}
+
 <div id="example" class="demo">
-  <p>Original message: "{{ message }}"</p>
-  <p>Computed reversed message: "{{ reversedMessage }}"</p>
-</div>
+  <p>
+    Original message: "{{ message }}"
+  </p>
+  
+  <p>
+    Computed reversed message: "{{ reversedMessage }}"
+  </p>
+</div> 
+
 <script>
 var vm = new Vue({
   el: '#example',
@@ -63,11 +69,14 @@ var vm = new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 Here we have declared a computed property `reversedMessage`. The function we provided will be used as the getter function for the property `vm.reversedMessage`:
 
-``` js
+```js
 console.log(vm.reversedMessage) // => 'olleH'
 vm.message = 'Goodbye'
 console.log(vm.reversedMessage) // => 'eybdooG'
@@ -81,11 +90,11 @@ You can data-bind to computed properties in templates just like a normal propert
 
 You may have noticed we can achieve the same result by invoking a method in the expression:
 
-``` html
+```html
 <p>Reversed message: "{{ reverseMessage() }}"</p>
 ```
 
-``` js
+```js
 // in component
 methods: {
   reverseMessage: function () {
@@ -98,7 +107,7 @@ Instead of a computed property, we can define the same function as a method inst
 
 This also means the following computed property will never update, because `Date.now()` is not a reactive dependency:
 
-``` js
+```js
 computed: {
   now: function () {
     return Date.now()
@@ -114,11 +123,11 @@ Why do we need caching? Imagine we have an expensive computed property **A**, wh
 
 Vue does provide a more generic way to observe and react to data changes on a Vue instance: **watch properties**. When you have some data that needs to change based on some other data, it is tempting to overuse `watch` - especially if you are coming from an AngularJS background. However, it is often a better idea to use a computed property rather than an imperative `watch` callback. Consider this example:
 
-``` html
+```html
 <div id="demo">{{ fullName }}</div>
 ```
 
-``` js
+```js
 var vm = new Vue({
   el: '#demo',
   data: {
@@ -139,7 +148,7 @@ var vm = new Vue({
 
 The above code is imperative and repetitive. Compare it with a computed property version:
 
-``` js
+```js
 var vm = new Vue({
   el: '#demo',
   data: {
@@ -160,7 +169,7 @@ Much better, isn't it?
 
 Computed properties are by default getter-only, but you can also provide a setter when you need it:
 
-``` js
+```js
 // ...
 computed: {
   fullName: {
@@ -187,7 +196,7 @@ While computed properties are more appropriate in most cases, there are times wh
 
 For example:
 
-``` html
+```html
 <div id="watch-example">
   <p>
     Ask a yes/no question:
@@ -197,7 +206,7 @@ For example:
 </div>
 ```
 
-``` html
+```html
 <!-- Since there is already a rich ecosystem of ajax libraries    -->
 <!-- and collections of general-purpose utility methods, Vue core -->
 <!-- is able to remain small by not reinventing them. This also   -->
@@ -254,16 +263,21 @@ var watchExampleVM = new Vue({
 Result:
 
 {% raw %}
+
 <div id="watch-example" class="demo">
   <p>
-    Ask a yes/no question:
-    <input v-model="question">
+    Ask a yes/no question: <input v-model="question" />
   </p>
-  <p>{{ answer }}</p>
+  
+  <p>
+    {{ answer }}
+  </p>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
-<script>
+ <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+
+ <script>
 var watchExampleVM = new Vue({
   el: '#watch-example',
   data: {
@@ -298,6 +312,9 @@ var watchExampleVM = new Vue({
   }
 })
 </script>
+
+ 
+
 {% endraw %}
 
 In this case, using the `watch` option allows us to perform an asynchronous operation (accessing an API), limit how often we perform that operation, and set intermediary states until we get a final answer. None of that would be possible with a computed property.
