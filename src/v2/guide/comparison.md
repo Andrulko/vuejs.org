@@ -3,7 +3,6 @@ title: Comparison with Other Frameworks
 type: guide
 order: 801
 ---
-
 This is definitely the most difficult page in the guide to write, but we do feel it's important. Odds are, you've had problems you tried to solve and you've used another library to solve them. You're here because you want to know if Vue can solve your specific problems better. That's what we hope to answer for you.
 
 We also try very hard to avoid bias. As the core team, we obviously like Vue a lot. There are some problems we think it solves better than anything else out there. If we didn't believe that, we wouldn't be working on it. We do want to be fair and accurate though. Where other libraries offer significant advantages, such as React's vast ecosystem of alternative renderers or Knockout's browser support back to IE6, we try to list these as well.
@@ -56,7 +55,7 @@ In Vue, we also have [render functions](render-function.html) and even [support 
 
 - For many developers who have been working with HTML, templates feel more natural to read and write. The preference itself can be somewhat subjective, but if it makes the developer more productive then the benefit is objective.
 
--  HTML-based templates make it much easier to progressively migrate existing applications to take advantage of Vue's reactivity features.
+- HTML-based templates make it much easier to progressively migrate existing applications to take advantage of Vue's reactivity features.
 
 - It also makes it much easier for designers and less experienced developers to parse and contribute to the codebase.
 
@@ -74,7 +73,7 @@ If you are a fan of CSS-in-JS, many of the popular CSS-in-JS libraries support V
 
 [Single-file components](single-file-components.html) give you full access to CSS in the same file as the rest of your component code.
 
-``` html
+```html
 <style scoped>
   @media (min-width: 250px) {
     .list-container:hover {
@@ -110,7 +109,7 @@ React is renowned for its steep learning curve. Before you can really get starte
 
 While Vue scales up just as well as, if not better than React, it also scales down just as well as jQuery. That's right - all you have to do is drop a single script tag into a page:
 
-``` html
+```html
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 ```
 
