@@ -1,8 +1,7 @@
 ---
 title: Vue.js 0.11 released!
-date: 2014-11-09 09:23:40
+date: '2014-11-09 09:23:40'
 ---
-
 After the long wait, [Vue.js 0.11 **Cowboy Bebop**](https://github.com/yyx990803/vue/releases/tag/0.11.0) is finally here! Thanks to everyone who tried out the release candidate versions and provided feedback / bug reports along the way.
 
 <!-- more -->
